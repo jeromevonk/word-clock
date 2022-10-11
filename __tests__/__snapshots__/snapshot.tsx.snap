@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders homepage unchanged 1`] = `
+<div>
+  <div
+    class="container"
+  >
+    <main>
+      <h1
+        class="title"
+      >
+        Welcome to word-clock
+      </h1>
+    </main>
+    <footer
+      class="footer"
+    >
+      <a
+        href="https://jeromevonk.github.io/"
+        target="blank"
+      >
+        Feito por Jerome Vonk
+      </a>
+    </footer>
+  </div>
+</div>
+`;
