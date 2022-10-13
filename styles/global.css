@@ -2,6 +2,8 @@ html,
 body {
   padding: 0;
   margin: 0;
+  background-color: black;
+  color: white;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
@@ -28,10 +30,6 @@ footer {
   align-items: center;
 }
 
-footer img {
-  margin-left: 0.5rem;
-}
-
 footer a {
   display: flex;
   justify-content: center;
@@ -41,13 +39,4 @@ footer a {
 a {
   color: inherit;
   text-decoration: none;
-}
-
-code {
-  background: #fafafa;
-  border-radius: 5px;
-  padding: 0.75rem;
-  font-size: 1.1rem;
-  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-    Bitstream Vera Sans Mono, Courier New, monospace;
 }
