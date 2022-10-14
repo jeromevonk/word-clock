@@ -3,9 +3,10 @@ export {
   convertTimeToWords,
 };
 
+import { ListOfCoordinates, NumberMatrix } from "@/helpers/types"
 import { emptyState, hourMap, minuteMap } from '@/helpers/wordMap'
 
-function turnOnLetters(currentState: number[][], actions: number[][]) {
+function turnOnLetters(currentState: NumberMatrix, actions: ListOfCoordinates) {
   let newState = currentState;
   for (const action of actions) {
     newState[action[0]][action[1]] = 1

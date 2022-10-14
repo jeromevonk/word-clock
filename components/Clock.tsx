@@ -1,7 +1,8 @@
 import React from "react";
 import styles from '@/components/clock.module.css'
-import { letterLayout, emptyState } from '@/helpers/wordMap'
+import { letterLayout, emptyState, ROWS, COLUMNS } from '@/helpers/wordMap'
 import { convertTimeToWords } from '@/helpers/util'
+import { NumberMatrix } from "@/helpers/types";
 
 export default function Clock() {
 
@@ -19,12 +20,27 @@ export default function Clock() {
       console.log(time)
 
       const newState = convertTimeToWords(time);
-      setActive(newState);
+      if (!isEquivalent(active, newState)) {
+        setActive(newState);
+      }
     }, 1000);
     return () => clearInterval(timer);
   }, []);
 
   const [active, setActive] = React.useState(emptyState);
+
+  const isEquivalent = (oldState: NumberMatrix, newState: NumberMatrix) : boolean => {
+    for (let i = 0; i < ROWS; i++) {
+      for (let j = 0; j < COLUMNS; j++) {
+        if (oldState[i][j] !== newState[i][j]) {
+          // If one entry is different, return false
+          return false;
+        }
+      }
+    }
+
+    return true;
+  }
 
   const getRows = (): JSX.Element[] => {
     const rows = []
@@ -52,6 +68,8 @@ export default function Clock() {
       </tr>
     )
   }
+
+  console.log('render')
 
   return (
     <div className={styles.clock}>

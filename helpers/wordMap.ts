@@ -4,9 +4,13 @@ export {
   emptyState,
   hourMap,
   minuteMap,
+  ROWS,
+  COLUMNS,
 };
 
-const letterLayout = [
+import { NumberMatrix, StringMatrix } from "@/helpers/types";
+
+const letterLayout: StringMatrix = [
   ['I', 'T', 'L', 'I', 'S', 'A', 'S', 'T', 'I', 'M', 'E'],
   ['A', 'C', 'Q', 'U', 'A', 'R', 'T', 'E', 'R', 'D', 'C'],
   ['T', 'W', 'E', 'N', 'T', 'Y', 'F', 'I', 'V', 'E', 'X'],
@@ -19,7 +23,11 @@ const letterLayout = [
   ['T', 'E', 'N', 'S', 'E', 'O', 'C', 'L', 'O', 'C', 'K'],
 ];
 
-const emptyState = [
+// Constants
+const ROWS = letterLayout.length;
+const COLUMNS = letterLayout[0].length;
+
+const emptyState: NumberMatrix = [
   [1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -53,19 +61,19 @@ const hourMap = {
 // ---------------------------------------------
 // Minutes
 // ---------------------------------------------
-const PAST = [[4, 0], [4, 1], [4, 2], [4, 3]];
-const TO = [[3, 9], [3, 10]];
-const OCLOCK = [[9, 5], [9, 6], [9, 7], [9, 8], [9, 9], [9, 10]]
-const FIVE = [[2, 6], [2, 7], [2, 8], [2, 9]];
-const TEN = [[3, 5], [3, 6], [3, 7]];
-const QUARTER = [[1, 0], [1, 2], [1, 3], [1, 4], [1, 5], [1, 6], [1, 7], [1, 8]];
-const TWENTY = [[2, 0], [2, 1], [2, 2], [2, 3], [2, 4], [2, 5]];
-const TWENTYFIVE = [...TWENTY, ...FIVE];
-const HALF = [[3, 0], [3, 1], [3, 2], [3, 3]]
+const PAST: NumberMatrix = [[4, 0], [4, 1], [4, 2], [4, 3]];
+const TO: NumberMatrix = [[3, 9], [3, 10]];
+const OCLOCK: NumberMatrix = [[9, 5], [9, 6], [9, 7], [9, 8], [9, 9], [9, 10]]
+const FIVE: NumberMatrix = [[2, 6], [2, 7], [2, 8], [2, 9]];
+const TEN: NumberMatrix = [[3, 5], [3, 6], [3, 7]];
+const QUARTER: NumberMatrix = [[1, 0], [1, 2], [1, 3], [1, 4], [1, 5], [1, 6], [1, 7], [1, 8]];
+const TWENTY: NumberMatrix = [[2, 0], [2, 1], [2, 2], [2, 3], [2, 4], [2, 5]];
+const TWENTYFIVE: NumberMatrix = [...TWENTY, ...FIVE];
+const HALF: NumberMatrix = [[3, 0], [3, 1], [3, 2], [3, 3]]
 
 const minuteMap = {
-  0:  [...OCLOCK],
-  5:  [...FIVE, ...PAST],
+  0: [...OCLOCK],
+  5: [...FIVE, ...PAST],
   10: [...TEN, ...PAST],
   15: [...QUARTER, ...PAST],
   20: [...TWENTY, ...PAST],
