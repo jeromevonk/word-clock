@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import styles from '@/pages/index.module.css'
-import Clock from 'components/Clock'
+import Clock from '@/components/Clock'
 
 export default function Index() {
   return (

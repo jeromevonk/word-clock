@@ -39,7 +39,6 @@ export default function Clock() {
     return (
       <tr key={`row-${rowNumber}`}>
         {
-          // TODO letterLayout não ser exportada?
           letterLayout[rowNumber].map((letter: string, columnNumber: number) => {
             let className = styles.generalCell;
             if (active[rowNumber][columnNumber] === 1) {
@@ -56,7 +55,7 @@ export default function Clock() {
 
   return (
     <div className={styles.clock}>
-      <table className={styles.generalTable}>
+      <table className={styles.generalTable} id='clock-table'>
         <tbody>
           {getRows()}
         </tbody>

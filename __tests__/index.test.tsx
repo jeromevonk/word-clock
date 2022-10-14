@@ -5,9 +5,7 @@ describe('Home', () => {
   it('renders a heading', () => {
     render(<Home />)
 
-    const heading = screen.getByRole('heading', {
-      name: /welcome to word-clock/i,
-    })
+    const heading = screen.getByRole('table')
 
     expect(heading).toBeInTheDocument()
   })
