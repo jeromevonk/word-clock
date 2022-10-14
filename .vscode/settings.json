@@ -1,0 +1,6 @@
+{
+  "sonarlint.connectedMode.project": {
+    "connectionId": "Jerome",
+    "projectKey": "jeromevonk_word-clock"
+  }
+}

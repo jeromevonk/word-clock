@@ -1,7 +1,8 @@
 import Head from 'next/head'
 import styles from '@/pages/index.module.css'
+import Clock from 'components/Clock'
 
-export default function Home() {
+export default function Index() {
   return (
     <div className={styles.container}>
       <Head>
@@ -17,9 +18,7 @@ export default function Home() {
       </Head>
 
       <main>
-        <h1 className={styles.title}>
-          Welcome to word-clock
-        </h1>
+        <Clock />
       </main>
 
       <footer className={styles.footer}>

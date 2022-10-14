@@ -1,0 +1,29 @@
+.clock {
+  border: solid 10px black;
+  border-radius: 10px;
+}
+
+.generalTable {
+  font-weight: bold;
+  color: #0a0a0a;
+  margin: 5;
+  font-size: xx-large;
+  margin: 45px;
+}
+
+.generalCell {
+  padding-right: 15px;
+}
+
+.generalCell:last-of-type {
+  padding-right: 0px;
+}
+
+.activeCell {
+  padding-right: 15px;
+  color: #fcfcfc;
+}
+
+.activeCell:last-of-type {
+  padding-right: 0px;
+}
