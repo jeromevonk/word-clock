@@ -7,9 +7,9 @@ body {
   /* font-family: monospace, monospace; */
   /* font-family: Consolas; */
   /* font-family: 'Righteous'; */
-  /* font-family: 'Open Sans Condensed', sans-serif; */
   /* font-family: 'Orienta', sans-serif; */
-  font-family: 'Garamond';
+  /* font-family: 'Garamond'; */
+  font-family: 'Open Sans Condensed', Consolas, monospace;
 }
 
 * {
