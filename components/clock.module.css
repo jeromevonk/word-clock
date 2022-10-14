@@ -13,6 +13,7 @@
 
 .generalCell {
   padding-right: 15px;
+  text-align: center;
 }
 
 .generalCell:last-of-type {
@@ -22,6 +23,7 @@
 .activeCell {
   padding-right: 15px;
   color: #fcfcfc;
+  text-align: center;
 }
 
 .activeCell:last-of-type {

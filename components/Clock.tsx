@@ -1,41 +1,42 @@
 import React from "react";
 import styles from '@/components/clock.module.css'
-
-const letterMatrix = [
-  ['I', 'T', 'L', 'I', 'S', 'A', 'S', 'T', 'I', 'M', 'E'],
-  ['A', 'C', 'Q', 'U', 'A', 'R', 'T', 'E', 'R', 'D', 'C'],
-  ['T', 'W', 'E', 'N', 'T', 'Y', 'F', 'I', 'V', 'E', 'X'],
-  ['H', 'A', 'L', 'F', 'B', 'T', 'E', 'N', 'F', 'T', 'O'],
-  ['P', 'A', 'S', 'T', 'E', 'R', 'U', 'N', 'I', 'N', 'E'],
-  ['O', 'N', 'E', 'S', 'I', 'X', 'T', 'H', 'R', 'E', 'E'],
-  ['F', 'O', 'U', 'R', 'F', 'I', 'V', 'E', 'T', 'W', 'O'],
-  ['E', 'I', 'G', 'H', 'T', 'E', 'L', 'E', 'V', 'E', 'N'],
-  ['S', 'E', 'V', 'E', 'N', 'T', 'W', 'E', 'L', 'V', 'E'],
-  ['T', 'E', 'N', 'S', 'E', 'O', 'C', 'L', 'O', 'C', 'K'],
-];
-
-const emptyState = [
-  [1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1],
-];
+import { letterMatrix, emptyState } from '@/helpers/wordMap'
+import { convertTimeToWords } from '@/helpers/util'
 
 export default function Clock() {
 
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      console.log("Interval");
+      
+      setDummyTime(prev => {
+        let next = prev + 1
+        console.log(next);
+        // convertTimeToWords to time
+        const hour = Math.floor(next / 60);
+        const minute = next % 60;
+        const strTime = `${hour}:${minute}`
+        console.log(strTime);
+        const newState = convertTimeToWords(strTime);
+        setActive(newState)
+
+        return next;
+      });
+
+      
+
+
+    }, 400);
+    return () => clearInterval(timer);
+  }, []);
+
+  const [dummyTime, setDummyTime] = React.useState(0);
   const [active, setActive] = React.useState(emptyState);
 
   const getRows = (): JSX.Element[] => {
     const rows = []
     for (let i = 0; i < 10; i++) {
       rows.push(getRow(i))
-      // rows.push(<tr key={i}><td>oi</td></tr>)
     }
 
     return rows;
@@ -45,11 +46,11 @@ export default function Clock() {
     return (
       <tr key={`row-${rowNumber}`}>
         {
-          letterMatrix[rowNumber].map((letter, columnNumber) => {
+          // TODO letterMatrix não ser exportada?
+          letterMatrix[rowNumber].map((letter: string, columnNumber: number) => {
             let className = styles.generalCell;
             if (active[rowNumber][columnNumber] === 1) {
               className = styles.activeCell;
-              console.log('ativo', rowNumber, columnNumber, className)
             }
             return (
               <td key={`cell-${rowNumber}-${columnNumber}`} className={className}>{letter}</td>
@@ -59,6 +60,19 @@ export default function Clock() {
       </tr>
     )
   }
+
+  // Set state
+  // const newState = convertTimeToWords(strTime);
+
+  // TODO: mudar de 0h00 - 23h59 para 1h00 - 12:59
+
+  // new Date().toLocaleTimeString('en-US', {
+    // hour12: true,
+    // hour: "numeric",
+    // minute: "numeric"
+  // });
+  
+  
 
   return (
     <div className={styles.clock}>
