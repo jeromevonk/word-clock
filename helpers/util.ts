@@ -1,10 +1,11 @@
 
 export {
   convertTimeToWords,
+  isEquivalent
 };
 
 import { ListOfCoordinates, NumberMatrix } from "@/helpers/types"
-import { emptyState, hourMap, minuteMap } from '@/helpers/wordMap'
+import { emptyState, hourMap, minuteMap, ROWS, COLUMNS } from '@/helpers/wordMap'
 
 function turnOnLetters(currentState: NumberMatrix, actions: ListOfCoordinates) {
   let newState = currentState;
@@ -13,6 +14,22 @@ function turnOnLetters(currentState: NumberMatrix, actions: ListOfCoordinates) {
   }
 
   return newState;
+}
+
+const isEquivalent = (oldState: NumberMatrix, newState: NumberMatrix): boolean => {
+  for (let i = 0; i < ROWS; i++) {
+    for (let j = 0; j < COLUMNS; j++) {
+      if (oldState[i][j] !== newState[i][j]) {
+        // If one entry is different, return false
+        console.log(i, j);
+        console.log(oldState[i][j]);
+        console.log(newState[i][j]);
+        return false;
+      }
+    }
+  }
+
+  return true;
 }
 
 function convertTimeToWords(time: string) {
