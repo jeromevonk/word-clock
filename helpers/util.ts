@@ -17,11 +17,11 @@ function turnOnLetters(currentState: number[][], actions: number[][]) {
 function convertTimeToWords(time: string) {
 
   // First, parse hour and minutes
-  const parsed: string[] = time.split(':');
+  // 'time' has the format: HH:mm am (or pm)
+  const parsed: string[] = time.slice(0, -3).split(':');
 
   let hour: number = Number(parsed[0]);
   let minutes: number = Number(parsed[1]);
-
 
   // Adjust minutes
   // Since clock works with 5-minute windows
@@ -57,77 +57,25 @@ function convertTimeToWords(time: string) {
   //
   // Conclusion: if minutes > 30, we add an hour
   // ---------------------------------------------
-  let strMinutes: string = '';
-  let strHour: string = `${hour}`;
 
+  // Deep copy the initial state
   let state = JSON.parse(JSON.stringify(emptyState));
 
+  let consideredHour: number;
+
   if (minutes <= 30) {
-    state = turnOnLetters(state, hourMap[hour])
+    consideredHour = hour;
   } else {
-    strHour = `${hour + 1}`;
-    state = turnOnLetters(state, hourMap[hour + 1])
+    if (hour < 12) {
+      consideredHour = hour + 1;
+    } else {
+      // Can't add an hour because after 12h, we go back to 1h
+      consideredHour = 1;
+    }
   }
-
-  state = turnOnLetters(state, minuteMap[minutes])
-
-  switch (minutes) {
-    case 0:
-      strHour = `${hour} o'clock`;
-      break;
-
-    case 5:
-      strMinutes = 'five past';
-      break;
-
-    case 10:
-      strMinutes = 'ten past';
-      break;
-
-    case 15:
-      strMinutes = 'a quarter past';
-      break;
-
-    case 20:
-      strMinutes = 'twenty past';
-      break;
-
-    case 25:
-      strMinutes = 'twenty five past';
-      break;
-
-    case 30:
-      strMinutes = 'half past';
-      break;
-
-    case 35:
-      strMinutes = 'twenty five to';
-      strHour = `${hour+1}`;
-      break;
-
-    case 40:
-      strMinutes = 'twenty to';
-      break;
-
-    case 45:
-      strMinutes = 'a quarter to';
-      break;
-
-    case 50:
-      strMinutes = 'ten to';
-      break;
-
-    case 55:
-      strMinutes = 'five to';
-      break;
-
-    case 60:
-      strHour += ` o'clock`;
-      break;
-  }
-
-  console.log(strMinutes, strHour);
-
+  
+  state = turnOnLetters(state, hourMap[consideredHour as keyof typeof hourMap])
+  state = turnOnLetters(state, minuteMap[minutes as keyof typeof minuteMap])
 
   return state;
 }

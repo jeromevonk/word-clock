@@ -1,36 +1,29 @@
 import React from "react";
 import styles from '@/components/clock.module.css'
-import { letterMatrix, emptyState } from '@/helpers/wordMap'
+import { letterLayout, emptyState } from '@/helpers/wordMap'
 import { convertTimeToWords } from '@/helpers/util'
 
 export default function Clock() {
 
   React.useEffect(() => {
     const timer = setInterval(() => {
-      console.log("Interval");
-      
-      setDummyTime(prev => {
-        let next = prev + 1
-        console.log(next);
-        // convertTimeToWords to time
-        const hour = Math.floor(next / 60);
-        const minute = next % 60;
-        const strTime = `${hour}:${minute}`
-        console.log(strTime);
-        const newState = convertTimeToWords(strTime);
-        setActive(newState)
 
-        return next;
+      // Fetch time
+      const time = new Date().toLocaleTimeString('en-GB', {
+        hour12: true,
+        hour: "numeric",
+        minute: "numeric"
       });
 
-      
+      // Log for debuggind purposes
+      console.log(time)
 
-
-    }, 400);
+      const newState = convertTimeToWords(time);
+      setActive(newState);
+    }, 1000);
     return () => clearInterval(timer);
   }, []);
 
-  const [dummyTime, setDummyTime] = React.useState(0);
   const [active, setActive] = React.useState(emptyState);
 
   const getRows = (): JSX.Element[] => {
@@ -46,8 +39,8 @@ export default function Clock() {
     return (
       <tr key={`row-${rowNumber}`}>
         {
-          // TODO letterMatrix não ser exportada?
-          letterMatrix[rowNumber].map((letter: string, columnNumber: number) => {
+          // TODO letterLayout não ser exportada?
+          letterLayout[rowNumber].map((letter: string, columnNumber: number) => {
             let className = styles.generalCell;
             if (active[rowNumber][columnNumber] === 1) {
               className = styles.activeCell;
@@ -60,19 +53,6 @@ export default function Clock() {
       </tr>
     )
   }
-
-  // Set state
-  // const newState = convertTimeToWords(strTime);
-
-  // TODO: mudar de 0h00 - 23h59 para 1h00 - 12:59
-
-  // new Date().toLocaleTimeString('en-US', {
-    // hour12: true,
-    // hour: "numeric",
-    // minute: "numeric"
-  // });
-  
-  
 
   return (
     <div className={styles.clock}>
