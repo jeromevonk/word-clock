@@ -2,6 +2,7 @@ import React from "react";
 import styles from '@/components/clock.module.css'
 import { letterLayout, emptyState } from '@/helpers/wordMap'
 import { convertTimeToWords, isEquivalent } from '@/helpers/util'
+import { NumberMatrix } from "@/helpers/types"
 
 export default function Clock() {
 
@@ -19,7 +20,7 @@ export default function Clock() {
       console.log(time)
 
       const newState = convertTimeToWords(time);
-      if (!isEquivalent(active, newState)) {
+      if (!isEquivalent(getCurrentState(), newState)) {
         setActive(newState);
       }
     }, 1000);
@@ -53,6 +54,11 @@ export default function Clock() {
         }
       </tr>
     )
+  }
+
+  const getCurrentState = () : NumberMatrix => {
+    console.log('me pegou')
+    return active;
   }
 
   console.log('render')

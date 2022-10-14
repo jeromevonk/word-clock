@@ -22,8 +22,8 @@ const isEquivalent = (oldState: NumberMatrix, newState: NumberMatrix): boolean =
       if (oldState[i][j] !== newState[i][j]) {
         // If one entry is different, return false
         console.log(i, j);
-        console.log(oldState[i][j]);
-        console.log(newState[i][j]);
+        console.table(oldState);
+        console.table(newState);
         return false;
       }
     }
