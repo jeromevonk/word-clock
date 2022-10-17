@@ -8,7 +8,7 @@ export {
   COLUMNS,
 };
 
-import { NumberMatrix, StringMatrix } from "@/helpers/types";
+import { NumberMatrix, StringMatrix } from "src/helpers/types";
 
 const letterLayout: StringMatrix = [
   ['I', 'T', 'L', 'I', 'S', 'A', 'S', 'T', 'I', 'M', 'E'],

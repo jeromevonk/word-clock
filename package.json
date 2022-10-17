@@ -5,10 +5,11 @@
     "build": "next build",
     "start": "next start",
     "test": "jest --watch",
-    "test-coverage": "jest --coverage --collectCoverageFrom='./pages/**' ",
+    "test-coverage": "jest --coverage --collectCoverageFrom='./src/**' ",
     "test:ci": "jest --ci"
   },
   "dependencies": {
+    "date-fns": "^2.29.3",
     "next": "latest",
     "react": "^18.1.0",
     "react-dom": "^18.1.0"

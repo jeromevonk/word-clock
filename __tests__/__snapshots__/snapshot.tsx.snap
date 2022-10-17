@@ -130,32 +130,32 @@ exports[`renders homepage unchanged 1`] = `
             </tr>
             <tr>
               <td
-                class="generalCell"
+                class="activeCell"
               >
                 T
               </td>
               <td
-                class="generalCell"
+                class="activeCell"
               >
                 W
               </td>
               <td
-                class="generalCell"
+                class="activeCell"
               >
                 E
               </td>
               <td
-                class="generalCell"
+                class="activeCell"
               >
                 N
               </td>
               <td
-                class="generalCell"
+                class="activeCell"
               >
                 T
               </td>
               <td
-                class="generalCell"
+                class="activeCell"
               >
                 Y
               </td>
@@ -244,22 +244,22 @@ exports[`renders homepage unchanged 1`] = `
             </tr>
             <tr>
               <td
-                class="generalCell"
+                class="activeCell"
               >
                 P
               </td>
               <td
-                class="generalCell"
+                class="activeCell"
               >
                 A
               </td>
               <td
-                class="generalCell"
+                class="activeCell"
               >
                 S
               </td>
               <td
-                class="generalCell"
+                class="activeCell"
               >
                 T
               </td>
@@ -472,27 +472,27 @@ exports[`renders homepage unchanged 1`] = `
             </tr>
             <tr>
               <td
-                class="generalCell"
+                class="activeCell"
               >
                 S
               </td>
               <td
-                class="generalCell"
+                class="activeCell"
               >
                 E
               </td>
               <td
-                class="generalCell"
+                class="activeCell"
               >
                 V
               </td>
               <td
-                class="generalCell"
+                class="activeCell"
               >
                 E
               </td>
               <td
-                class="generalCell"
+                class="activeCell"
               >
                 N
               </td>

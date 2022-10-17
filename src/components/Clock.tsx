@@ -1,33 +1,14 @@
 import React from "react";
+import { format } from "date-fns"
 import styles from '@/components/clock.module.css'
-import { letterLayout, emptyState } from '@/helpers/wordMap'
-import { convertTimeToWords, isEquivalent } from '@/helpers/util'
-import { NumberMatrix } from "@/helpers/types"
+import { letterLayout } from 'src/helpers/wordMap'
+import { convertTimeToWords } from 'src/helpers/util'
+import { NumberMatrix } from "src/helpers/types"
+import useDateTime from 'src/components/use-datetime'
 
 export default function Clock() {
 
-  React.useEffect(() => {
-    const timer = setInterval(() => {
-
-      // Fetch time
-      const time = new Date().toLocaleTimeString('en-GB', {
-        hour12: true,
-        hour: "numeric",
-        minute: "numeric"
-      });
-
-      // Log for debugging purposes
-      console.log(time)
-
-      const newState = convertTimeToWords(time);
-      if (!isEquivalent(getCurrentState(), newState)) {
-        setActive(newState);
-      }
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
-
-  const [active, setActive] = React.useState(emptyState);
+  let activeLetters: NumberMatrix;
 
   const getRows = (): JSX.Element[] => {
     const rows = []
@@ -44,7 +25,7 @@ export default function Clock() {
         {
           letterLayout[rowNumber].map((letter: string, columnNumber: number) => {
             let className = styles.generalCell;
-            if (active[rowNumber][columnNumber] === 1) {
+            if (activeLetters[rowNumber][columnNumber] === 1) {
               className = styles.activeCell;
             }
             return (
@@ -56,13 +37,14 @@ export default function Clock() {
     )
   }
 
-  const getCurrentState = () : NumberMatrix => {
-    console.log('me pegou')
-    return active;
-  }
-
-  console.log('render')
-
+  // ------------------------------------
+  // useDateTime custom hook
+  // This will render every minute change
+  // ------------------------------------
+  const date = useDateTime("minute");
+  const time = format(date, 'hh:mm aa'); 
+  activeLetters = convertTimeToWords(time);
+  
   return (
     <div className={styles.clock}>
       <table className={styles.generalTable} id='clock-table'>

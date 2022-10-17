@@ -4,8 +4,8 @@ export {
   isEquivalent
 };
 
-import { ListOfCoordinates, NumberMatrix } from "@/helpers/types"
-import { emptyState, hourMap, minuteMap, ROWS, COLUMNS } from '@/helpers/wordMap'
+import { ListOfCoordinates, NumberMatrix } from "src/helpers/types"
+import { emptyState, hourMap, minuteMap, ROWS, COLUMNS } from 'src/helpers/wordMap'
 
 function turnOnLetters(currentState: NumberMatrix, actions: ListOfCoordinates) {
   let newState = currentState;
@@ -21,9 +21,9 @@ const isEquivalent = (oldState: NumberMatrix, newState: NumberMatrix): boolean =
     for (let j = 0; j < COLUMNS; j++) {
       if (oldState[i][j] !== newState[i][j]) {
         // If one entry is different, return false
-        console.log(i, j);
-        console.table(oldState);
-        console.table(newState);
+        // console.log(i, j);
+        // console.table(oldState);
+        // console.table(newState);
         return false;
       }
     }
