@@ -43,6 +43,9 @@ export default function Clock() {
   // ------------------------------------
   const date = useDateTime("minute");
   const time = format(date, 'hh:mm aa'); 
+  console.log(date);
+  console.log(time);
+
   activeLetters = convertTimeToWords(time);
   
   return (
