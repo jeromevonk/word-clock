@@ -6,7 +6,12 @@ import { convertTimeToWords } from 'src/helpers/util'
 import { NumberMatrix } from "src/helpers/types"
 import useDateTime from 'src/components/use-datetime'
 
-export default function Clock() {
+type Props = {
+  wordMode: boolean,
+};
+
+export default function Clock({ wordMode } : Props ) {
+  console.log(wordMode);
   const getRows = (activeLetters: NumberMatrix): JSX.Element[] => {
     const rows = []
     for (let i = 0; i < ROWS; i++) {
@@ -44,7 +49,6 @@ export default function Clock() {
 
   const activeLetters = convertTimeToWords(time);
   const rows = getRows(activeLetters);
-  console.log(rows);
   
   return (
     <div className={styles.clock}>

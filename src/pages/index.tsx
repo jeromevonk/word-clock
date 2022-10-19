@@ -6,8 +6,14 @@ import styles from '@/pages/index.module.css'
 
 export default function Index() {
   const [wordMode, setWordMode] = React.useState(true)
-  console.log(wordMode);
 
+  // -------------------------------------------------------------------------
+  // We will dinamically import clock and avoid server-side rendering
+  // since clock is dependent on users' locale
+  // HTML rendered on the browser won't match the one generated on the server.
+  // see: https://stackoverflow.com/a/66374800/660711
+  //      https://www.netlify.com/blog/fix-next-js-react-hydration-error/
+  // -------------------------------------------------------------------------
   const Clock = dynamic(
     () => import('src/components/Clock'),
     { ssr: false }
@@ -29,7 +35,7 @@ export default function Index() {
 
       <main>
         <div className={styles.stackRow}>
-          <Clock />
+          <Clock wordMode={wordMode}/>
           <div className={styles.buttonMode} onClick={() => setWordMode(prev => !prev)}>
            ..
           </div>
