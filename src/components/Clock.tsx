@@ -7,19 +7,16 @@ import { NumberMatrix } from "src/helpers/types"
 import useDateTime from 'src/components/use-datetime'
 
 export default function Clock() {
-
-  let activeLetters: NumberMatrix;
-
-  const getRows = (): JSX.Element[] => {
+  const getRows = (activeLetters: NumberMatrix): JSX.Element[] => {
     const rows = []
     for (let i = 0; i < ROWS; i++) {
-      rows.push(getRow(i));
+      rows.push(getRow(i, activeLetters));
     }
 
     return rows;
   }
 
-  const getRow = (rowNumber: number): JSX.Element => {
+  const getRow = (rowNumber: number, activeLetters: NumberMatrix): JSX.Element => {
     return (
       <tr key={`row-${rowNumber}`}>
         {
@@ -27,7 +24,6 @@ export default function Clock() {
             let className = styles.generalCell;
             if (activeLetters[rowNumber][columnNumber] === 1) {
               className += ` ${styles.activeCell}`;
-              console.log(rowNumber, columnNumber, letter, className);
             }
             return (
               <td key={`cell-${rowNumber}-${columnNumber}`} className={className}>{letter}</td>
@@ -46,8 +42,8 @@ export default function Clock() {
   const time = format(date, 'hh:mm aa'); 
   console.log(time);
 
-  activeLetters = convertTimeToWords(time);
-  const rows = getRows();
+  const activeLetters = convertTimeToWords(time);
+  const rows = getRows(activeLetters);
   console.log(rows);
 
   
