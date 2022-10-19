@@ -26,7 +26,7 @@ export default function Clock() {
           letterLayout[rowNumber].map((letter: string, columnNumber: number) => {
             let className = styles.generalCell;
             if (activeLetters[rowNumber][columnNumber] === 1) {
-              className = styles.activeCell;
+              className += ` ${styles.activeCell}`;
               console.log(rowNumber, columnNumber, letter, className);
             }
             return (

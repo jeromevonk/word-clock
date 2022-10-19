@@ -21,11 +21,5 @@
 }
 
 .activeCell {
-  padding-right: 15px;
   color: #fcfcfc;
-  text-align: center;
-}
-
-.activeCell:last-of-type {
-  padding-right: 0px;
 }
