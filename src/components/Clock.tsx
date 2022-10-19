@@ -26,8 +26,8 @@ export default function Clock() {
           letterLayout[rowNumber].map((letter: string, columnNumber: number) => {
             let className = styles.generalCell;
             if (activeLetters[rowNumber][columnNumber] === 1) {
-              console.log(rowNumber, columnNumber, letter, 'shoud be light');
               className = styles.activeCell;
+              console.log(rowNumber, columnNumber, letter, className);
             }
             return (
               <td key={`cell-${rowNumber}-${columnNumber}`} className={className}>{letter}</td>
