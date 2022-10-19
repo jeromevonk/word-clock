@@ -1,11 +1,17 @@
 import React from "react";
 import Head from 'next/head'
+import dynamic from 'next/dynamic'
 import styles from '@/pages/index.module.css'
-import Clock from 'src/components/Clock'
+// import Clock from 'src/components/Clock'
 
 export default function Index() {
   const [wordMode, setWordMode] = React.useState(true)
   console.log(wordMode);
+
+  const Clock = dynamic(
+    () => import('src/components/Clock'),
+    { ssr: false }
+  );
 
   return (
     <div className={styles.container}>

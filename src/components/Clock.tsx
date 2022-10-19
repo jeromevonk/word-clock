@@ -21,14 +21,12 @@ export default function Clock() {
       <tr key={`row-${rowNumber}`}>
         {
           letterLayout[rowNumber].map((letter: string, columnNumber: number) => {
-            let temp = letter;
             let className = styles.generalCell;
             if (activeLetters[rowNumber][columnNumber] === 1) {
               className += ` ${styles.activeCell}`;
-              // temp = temp + '.';
             }
             return (
-              <td key={`cell-${rowNumber}-${columnNumber}`} className={className}>{temp}</td>
+              <td key={`cell-${rowNumber}-${columnNumber}`} className={className}>{letter}</td>
             )
           })
         }
