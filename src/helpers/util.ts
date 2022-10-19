@@ -20,10 +20,6 @@ const isEquivalent = (oldState: NumberMatrix, newState: NumberMatrix): boolean =
   for (let i = 0; i < ROWS; i++) {
     for (let j = 0; j < COLUMNS; j++) {
       if (oldState[i][j] !== newState[i][j]) {
-        // If one entry is different, return false
-        // console.log(i, j);
-        // console.table(oldState);
-        // console.table(newState);
         return false;
       }
     }

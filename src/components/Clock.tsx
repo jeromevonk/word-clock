@@ -1,7 +1,7 @@
 import React from "react";
 import { format } from "date-fns"
 import styles from '@/components/clock.module.css'
-import { letterLayout } from 'src/helpers/wordMap'
+import { letterLayout, ROWS } from 'src/helpers/wordMap'
 import { convertTimeToWords } from 'src/helpers/util'
 import { NumberMatrix } from "src/helpers/types"
 import useDateTime from 'src/components/use-datetime'
@@ -12,7 +12,7 @@ export default function Clock() {
 
   const getRows = (): JSX.Element[] => {
     const rows = []
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < ROWS; i++) {
       rows.push(getRow(i))
     }
 
@@ -26,7 +26,7 @@ export default function Clock() {
           letterLayout[rowNumber].map((letter: string, columnNumber: number) => {
             let className = styles.generalCell;
             if (activeLetters[rowNumber][columnNumber] === 1) {
-              console.log(rowNumber, columnNumber);
+              console.log(rowNumber, columnNumber, letter, 'shoud be light');
               className = styles.activeCell;
             }
             return (
