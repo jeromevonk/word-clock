@@ -47,6 +47,7 @@ export default function Clock() {
   console.log(time);
 
   activeLetters = convertTimeToWords(time);
+  console.table(activeLetters);
   
   return (
     <div className={styles.clock}>

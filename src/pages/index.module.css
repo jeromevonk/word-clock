@@ -6,3 +6,24 @@
   align-items: center;
   justify-content: center;
 }
+
+.stackRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttonMode {
+  height: 70px;
+  min-height: 70px;
+  width: 50 px;
+  background-color: rgb(37, 33, 33);
+  color: rgb(37, 33, 33);
+  display: flex;
+  align-items: center;
+}
+
+.buttonMode.hover {
+  background-color: #4CAF50;
+}
