@@ -13,7 +13,9 @@ export default function Clock() {
   const getRows = (): JSX.Element[] => {
     const rows = []
     for (let i = 0; i < ROWS; i++) {
-      rows.push(getRow(i))
+      const temp = getRow(i);
+      rows.push(temp);
+      console.log(temp)
     }
 
     return rows;
@@ -44,11 +46,9 @@ export default function Clock() {
   // ------------------------------------
   const date = useDateTime("minute");
   const time = format(date, 'hh:mm aa'); 
-  console.log(date);
   console.log(time);
 
   activeLetters = convertTimeToWords(time);
-  console.table(activeLetters);
   
   return (
     <div className={styles.clock}>
