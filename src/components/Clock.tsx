@@ -25,7 +25,7 @@ export default function Clock() {
             let className = styles.generalCell;
             if (activeLetters[rowNumber][columnNumber] === 1) {
               className += ` ${styles.activeCell}`;
-              temp = temp + '.';
+              // temp = temp + '.';
             }
             return (
               <td key={`cell-${rowNumber}-${columnNumber}`} className={className}>{temp}</td>
