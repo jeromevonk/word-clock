@@ -45,7 +45,6 @@ export default function Clock() {
   const activeLetters = convertTimeToWords(time);
   const rows = getRows(activeLetters);
   console.log(rows);
-
   
   return (
     <div className={styles.clock}>
