@@ -13,9 +13,7 @@ export default function Clock() {
   const getRows = (): JSX.Element[] => {
     const rows = []
     for (let i = 0; i < ROWS; i++) {
-      const temp = getRow(i);
-      rows.push(temp);
-      console.log(temp)
+      rows.push(getRow(i));
     }
 
     return rows;
@@ -49,12 +47,15 @@ export default function Clock() {
   console.log(time);
 
   activeLetters = convertTimeToWords(time);
+  const rows = getRows();
+  console.log(rows);
+
   
   return (
     <div className={styles.clock}>
       <table className={styles.generalTable} id='clock-table'>
         <tbody>
-          {getRows()}
+          {rows}
         </tbody>
       </table>
     </div>
