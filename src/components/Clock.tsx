@@ -26,7 +26,7 @@ export default function Clock() {
               className += ` ${styles.activeCell}`;
             }
             return (
-              <td key={`cell-${rowNumber}-${columnNumber}`} className={className}>{letter}</td>
+              <td key={`cell-${rowNumber}-${columnNumber}`} className={className}>X</td>
             )
           })
         }
