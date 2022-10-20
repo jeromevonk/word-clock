@@ -163,12 +163,6 @@ function convertTimeToDigits(time: string): NumberMatrix {
   // First, parse hour and minutes
   const { exactMinutes } = parseTime(time);
 
-  // Deep copy the initial state
-  let state = JSON.parse(JSON.stringify(emptyState));
-
-  //
-  state = getDigits(exactMinutes);
-
-
-  return state;
+  // Get the digits
+  return getDigits(exactMinutes);
 }
