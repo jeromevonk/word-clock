@@ -1,7 +1,7 @@
 .clock {
-  border: solid 0.8vh black;
+  border: solid 0.8vh #0a0a0a;
   border-radius: 10px;
-  box-shadow: 0px 0px 4vh black;
+  box-shadow: 0px 0px 6vh #0a0a0a;
 }
 
 .generalTable {

@@ -37,7 +37,6 @@ export default function Index() {
         <div className={styles.stackRow}>
           <Clock wordMode={wordMode}/>
           <div className={styles.buttonMode} onClick={() => setWordMode(prev => !prev)}>
-           ..
           </div>
         </div>
       </main>

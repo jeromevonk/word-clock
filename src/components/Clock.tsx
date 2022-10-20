@@ -2,7 +2,7 @@ import React from "react";
 import { format } from "date-fns"
 import styles from '@/components/clock.module.css'
 import { letterLayout, ROWS } from 'src/helpers/wordMap'
-import { convertTimeToWords } from 'src/helpers/util'
+import { convertTimeToWords, convertTimeToDigits } from 'src/helpers/util'
 import { NumberMatrix } from "src/helpers/types"
 import useDateTime from 'src/components/use-datetime'
 
@@ -47,9 +47,16 @@ export default function Clock({ wordMode } : Props ) {
   const time = format(date, 'hh:mm aa'); 
   console.log(time);
 
-  const activeLetters = convertTimeToWords(time);
-  const rows = getRows(activeLetters);
+  let activeLetters;
+
+  if (wordMode) {
+    activeLetters = convertTimeToWords(time);
+  } else {
+    activeLetters = convertTimeToDigits(time);
+  }
   
+  const rows = getRows(activeLetters);
+
   return (
     <div className={styles.clock}>
       <table className={styles.generalTable} id='clock-table'>

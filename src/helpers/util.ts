@@ -1,6 +1,7 @@
 
 export {
   convertTimeToWords,
+  convertTimeToDigits,
   isEquivalent
 };
 
@@ -28,7 +29,7 @@ const isEquivalent = (oldState: NumberMatrix, newState: NumberMatrix): boolean =
   return true;
 }
 
-function convertTimeToWords(time: string) {
+function convertTimeToWords(time: string): NumberMatrix {
 
   // First, parse hour and minutes
   // 'time' has the format: HH:mm am (or pm)
@@ -92,4 +93,22 @@ function convertTimeToWords(time: string) {
   state = turnOnLetters(state, minuteMap[minutes as keyof typeof minuteMap])
 
   return state;
+}
+
+function convertTimeToDigits(time: string): NumberMatrix {
+  return  [
+    [1, 1, 1, 1, 1,   0,   0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 1,   0,   0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 1,   0,   0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 1,   0,   0, 0, 0, 0, 0],
+    [1, 1, 1, 1, 1,   0,   0, 0, 0, 0, 0],
+    [1, 0, 0, 0, 0,   0,   0, 0, 0, 0, 0],
+    [1, 0, 0, 0, 0,   0,   0, 0, 0, 0, 0],
+    [1, 0, 0, 0, 0,   0,   0, 0, 0, 0, 0],
+    [1, 0, 0, 0, 0,   0,   0, 0, 0, 0, 0],
+    [1, 1, 1, 1, 1,   0,   0, 0, 0, 0, 0],
+  ];
+
+
+
 }
