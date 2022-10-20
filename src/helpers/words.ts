@@ -1,44 +1,12 @@
 
 export {
-  letterLayout,
-  emptyState,
   hourMap,
   minuteMap,
-  ROWS,
-  COLUMNS,
+  IT_IS,
 };
 
-import { NumberMatrix, StringMatrix } from "src/helpers/types";
+import { NumberMatrix } from "src/helpers/types";
 
-const letterLayout: StringMatrix = [
-  ['I', 'T', 'L', 'I', 'S', 'A', 'S', 'T', 'I', 'M', 'E'],
-  ['A', 'C', 'Q', 'U', 'A', 'R', 'T', 'E', 'R', 'D', 'C'],
-  ['T', 'W', 'E', 'N', 'T', 'Y', 'F', 'I', 'V', 'E', 'X'],
-  ['H', 'A', 'L', 'F', 'B', 'T', 'E', 'N', 'F', 'T', 'O'],
-  ['P', 'A', 'S', 'T', 'E', 'R', 'U', 'N', 'I', 'N', 'E'],
-  ['O', 'N', 'E', 'S', 'I', 'X', 'T', 'H', 'R', 'E', 'E'],
-  ['F', 'O', 'U', 'R', 'F', 'I', 'V', 'E', 'T', 'W', 'O'],
-  ['E', 'I', 'G', 'H', 'T', 'E', 'L', 'E', 'V', 'E', 'N'],
-  ['S', 'E', 'V', 'E', 'N', 'T', 'W', 'E', 'L', 'V', 'E'],
-  ['T', 'E', 'N', 'S', 'E', 'O', 'C', 'L', 'O', 'C', 'K'],
-];
-
-// Constants
-const ROWS = letterLayout.length;
-const COLUMNS = letterLayout[0].length;
-
-const emptyState: NumberMatrix = [
-  [1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-];
 
 // ---------------------------------------------
 // Hours
@@ -69,7 +37,8 @@ const TEN: NumberMatrix = [[3, 5], [3, 6], [3, 7]];
 const QUARTER: NumberMatrix = [[1, 0], [1, 2], [1, 3], [1, 4], [1, 5], [1, 6], [1, 7], [1, 8]];
 const TWENTY: NumberMatrix = [[2, 0], [2, 1], [2, 2], [2, 3], [2, 4], [2, 5]];
 const TWENTYFIVE: NumberMatrix = [...TWENTY, ...FIVE];
-const HALF: NumberMatrix = [[3, 0], [3, 1], [3, 2], [3, 3]]
+const HALF: NumberMatrix = [[3, 0], [3, 1], [3, 2], [3, 3]];
+const IT_IS: NumberMatrix = [[0, 0], [0, 1], [0, 3], [0, 4]];
 
 const minuteMap = {
   0: [...OCLOCK],

@@ -1,7 +1,7 @@
 import React from "react";
 import { format } from "date-fns"
 import styles from '@/components/clock.module.css'
-import { letterLayout, ROWS } from 'src/helpers/wordMap'
+import { letterLayout, ROWS } from '@/helpers/letterLayout'
 import { convertTimeToWords, convertTimeToDigits } from 'src/helpers/util'
 import { NumberMatrix } from "src/helpers/types"
 import useDateTime from 'src/components/use-datetime'
@@ -11,7 +11,6 @@ type Props = {
 };
 
 export default function Clock({ wordMode } : Props ) {
-  console.log(wordMode);
   const getRows = (activeLetters: NumberMatrix): JSX.Element[] => {
     const rows = []
     for (let i = 0; i < ROWS; i++) {
@@ -45,7 +44,6 @@ export default function Clock({ wordMode } : Props ) {
   // ------------------------------------
   const date = useDateTime("minute");
   const time = format(date, 'hh:mm aa'); 
-  console.log(time);
 
   let activeLetters;
 
