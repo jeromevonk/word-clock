@@ -4,7 +4,7 @@ export {
   EMPTY_ROW
 };
 
-import { NumberRow, NumberMatrix } from "src/helpers/types";
+import { NumberRow, NumberMatrix } from "helpers/types";
 
 
 const EMPTY_ROW: NumberRow = [

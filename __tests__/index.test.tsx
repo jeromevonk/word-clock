@@ -1,12 +1,14 @@
 import { render, screen } from '@testing-library/react'
-import Home from 'src/pages/index'
+import Home from '@/pages/index'
 
 describe('Index', () => {
-  it('renders a table', () => {
+  it('renders a footer', () => {
     render(<Home />)
 
-    const heading = screen.getByRole('table')
+    const footer = screen.getByRole('link', {
+      name: "By Jerome Vonk",
+    })
 
-    expect(heading).toBeInTheDocument()
+    expect(footer).toBeInTheDocument()
   })
 })

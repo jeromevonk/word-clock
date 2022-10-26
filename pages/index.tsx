@@ -14,7 +14,7 @@ export default function Index() {
   //      https://www.netlify.com/blog/fix-next-js-react-hydration-error/
   // -------------------------------------------------------------------------
   const Clock = dynamic(
-    () => import('src/components/Clock'),
+    () => import('components/Clock'),
     { ssr: false }
   );
 

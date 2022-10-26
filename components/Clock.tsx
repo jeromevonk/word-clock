@@ -2,9 +2,9 @@ import React from "react";
 import { format } from "date-fns"
 import styles from '@/components/clock.module.css'
 import { letterLayout, ROWS } from '@/helpers/letterLayout'
-import { convertTimeToWords, convertTimeToDigits } from 'src/helpers/util'
-import { NumberMatrix } from "src/helpers/types"
-import useDateTime from 'src/components/use-datetime'
+import { convertTimeToWords, convertTimeToDigits } from '@/helpers/util'
+import { NumberMatrix } from "@/helpers/types"
+import useDateTime from '@/components/use-datetime'
 
 type Props = {
   wordMode: boolean,

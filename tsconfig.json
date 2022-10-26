@@ -16,9 +16,9 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@/components/*": ["src/components/*"],
-      "@/helpers/*": ["src/helpers/*"],
-      "@/pages/*": ["src/pages/*"],
+      "@/components/*": ["components/*"],
+      "@/helpers/*": ["helpers/*"],
+      "@/pages/*": ["pages/*"],
       "@/styles/*": ["styles/*"]
     }
   },

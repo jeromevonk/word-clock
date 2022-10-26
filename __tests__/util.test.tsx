@@ -1,4 +1,4 @@
-import { convertTimeToWords, isEquivalent } from 'src/helpers/util'
+import { convertTimeToWords, isEquivalent } from '@/helpers/util'
 
 const expected_4_14 = [
   [1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0],

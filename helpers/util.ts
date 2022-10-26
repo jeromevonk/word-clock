@@ -5,11 +5,11 @@ export {
   isEquivalent
 };
 
-import { ListOfCoordinates, NumberMatrix } from "src/helpers/types"
-import { ROWS, COLUMNS, } from "src/helpers/letterLayout"
-import { emptyState, EMPTY_ROW } from "src/helpers/state"
+import { ListOfCoordinates, NumberMatrix } from "@/helpers/types"
+import { ROWS, COLUMNS, } from "@/helpers/letterLayout"
+import { emptyState, EMPTY_ROW } from "@/helpers/state"
 import { hourMap, minuteMap, IT_IS } from '@/helpers/words'
-import { digitMap } from 'src/helpers/digits'
+import { digitMap } from '@/helpers/digits'
 
 function turnOnLetters(currentState: NumberMatrix, actions: ListOfCoordinates) {
   let newState = currentState;
