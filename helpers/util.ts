@@ -11,16 +11,30 @@ import { emptyState, EMPTY_ROW } from "@/helpers/state"
 import { hourMap, minuteMap, IT_IS } from '@/helpers/words'
 import { digitMap } from '@/helpers/digits'
 
-function turnOnLetters(currentState: NumberMatrix, actions: ListOfCoordinates) {
-  let newState = currentState;
-  for (const action of actions) {
-    newState[action[0]][action[1]] = 1;
-  }
+function convertTimeToWords(time: string): NumberMatrix {
+  // First, parse hour and minutes
+  const { hourToWordClock, minutesToWorkClock } = parseTime(time);
 
-  return newState;
+  // Deep copy the initial state
+  let state = JSON.parse(JSON.stringify(emptyState));
+
+  // Follow instructions to turn the letters on
+  state = turnOnLetters(state, IT_IS);
+  state = turnOnLetters(state, hourMap[hourToWordClock as keyof typeof hourMap]);
+  state = turnOnLetters(state, minuteMap[minutesToWorkClock as keyof typeof minuteMap]);
+
+  return state;
 }
 
-const isEquivalent = (oldState: NumberMatrix, newState: NumberMatrix): boolean => {
+function convertTimeToDigits(time: string): NumberMatrix {
+  // First, parse hour and minutes
+  const { exactMinutes } = parseTime(time);
+
+  // Get the digits
+  return getDigits(exactMinutes);
+}
+
+function isEquivalent(oldState: NumberMatrix, newState: NumberMatrix): boolean {
   for (let i = 0; i < ROWS; i++) {
     for (let j = 0; j < COLUMNS; j++) {
       if (oldState[i][j] !== newState[i][j]) {
@@ -144,25 +158,11 @@ const getDigits = (exactMinutes: number): NumberMatrix => {
   return state;
 }
 
-function convertTimeToWords(time: string): NumberMatrix {
-  // First, parse hour and minutes
-  const { hourToWordClock, minutesToWorkClock } = parseTime(time);
+function turnOnLetters(currentState: NumberMatrix, actions: ListOfCoordinates) {
+  let newState = currentState;
+  for (const action of actions) {
+    newState[action[0]][action[1]] = 1;
+  }
 
-  // Deep copy the initial state
-  let state = JSON.parse(JSON.stringify(emptyState));
-
-  // Follow instructions to turn the letters on
-  state = turnOnLetters(state, IT_IS);
-  state = turnOnLetters(state, hourMap[hourToWordClock as keyof typeof hourMap]);
-  state = turnOnLetters(state, minuteMap[minutesToWorkClock as keyof typeof minuteMap]);
-
-  return state;
-}
-
-function convertTimeToDigits(time: string): NumberMatrix {
-  // First, parse hour and minutes
-  const { exactMinutes } = parseTime(time);
-
-  // Get the digits
-  return getDigits(exactMinutes);
+  return newState;
 }

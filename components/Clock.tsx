@@ -43,7 +43,8 @@ export default function Clock({ wordMode }: ClockProps ) {
   // This will render every minute change
   // ------------------------------------
   const date = useDateTime("minute");
-  const time = format(date, 'hh:mm aa'); 
+  const time = format(date, 'hh:mm aa');
+  console.log(time);
 
   let activeLetters;
 
@@ -54,6 +55,8 @@ export default function Clock({ wordMode }: ClockProps ) {
   }
   
   const rows = getRows(activeLetters);
+
+  console.log('render')
 
   return (
     <div className={styles.clock}>

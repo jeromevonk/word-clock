@@ -11,7 +11,9 @@ exports[`renders homepage unchanged 1`] = `
       >
         <button
           class="buttonMode"
-        />
+        >
+          M
+        </button>
       </div>
     </main>
     <footer
