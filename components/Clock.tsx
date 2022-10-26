@@ -3,7 +3,7 @@ import { format } from "date-fns"
 import styles from '@/components/clock.module.css'
 import { letterLayout, ROWS } from '@/helpers/letterLayout'
 import { convertTimeToWords, convertTimeToDigits } from '@/helpers/util'
-import { NumberMatrix } from "@/helpers/types"
+import { NumberMatrix } from "@/types/types"
 import useDateTime from '@/components/use-datetime'
 
 type ClockProps = {
