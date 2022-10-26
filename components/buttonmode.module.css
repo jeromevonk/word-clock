@@ -2,15 +2,18 @@
   height: 70px;
   min-height: 70px;
   min-width: 10px;
-  background-color: #0a0a0a;
+  /* min-width: 10px; */
+  font-size: 1.1vh;
+  font-weight: bold;
   color: white;
   display: flex;
   align-items: center;
-  border: solid 1px #0a0a0a;
+  background-color: black;
+  border: solid 0.1vh black;
 }
 
 .buttonMode:hover {
   cursor: pointer;
-  background-color: black;
-  border: solid 1px black;
+  background-color: #0a0a0a;
+  border: solid 0.1vh #0a0a0a;
 }

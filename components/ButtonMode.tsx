@@ -7,15 +7,11 @@ type ButtonModeProps = {
 
 export default function ButtonMode({ setWordMode }: ButtonModeProps) {
   return (
-    // <div
-    //   className={styles.buttonMode} 
-    //   
-    // </div>
     <button
       className={styles.buttonMode}
       onClick={() => setWordMode((prev: boolean) => !prev)}
     >
-      {/* empty */}
+      M
     </button>
   )
 }
