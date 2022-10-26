@@ -5,7 +5,7 @@ export {
   COLUMNS,
 };
 
-import { StringMatrix } from "helpers/types";
+import { StringMatrix } from "types/types";
 
 const letterLayout: StringMatrix = [
   ['I', 'T', 'L', 'I', 'S', 'A', 'S', 'T', 'I', 'M', 'E'],

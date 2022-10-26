@@ -5,7 +5,7 @@ export {
   IT_IS,
 };
 
-import { NumberMatrix } from "helpers/types";
+import { NumberMatrix } from "types/types";
 
 
 // ---------------------------------------------

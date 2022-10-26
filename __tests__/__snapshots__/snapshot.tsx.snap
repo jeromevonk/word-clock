@@ -9,7 +9,7 @@ exports[`renders homepage unchanged 1`] = `
       <div
         class="stackRow"
       >
-        <div
+        <button
           class="buttonMode"
         />
       </div>
