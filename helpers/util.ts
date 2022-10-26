@@ -5,7 +5,7 @@ export {
   isEquivalent
 };
 
-import { ListOfCoordinates, NumberMatrix } from "@/helpers/types"
+import { ListOfCoordinates, NumberMatrix } from "@/types/types"
 import { ROWS, COLUMNS, } from "@/helpers/letterLayout"
 import { emptyState, EMPTY_ROW } from "@/helpers/state"
 import { hourMap, minuteMap, IT_IS } from '@/helpers/words'

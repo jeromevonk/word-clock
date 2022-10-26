@@ -6,11 +6,11 @@ import { convertTimeToWords, convertTimeToDigits } from '@/helpers/util'
 import { NumberMatrix } from "@/helpers/types"
 import useDateTime from '@/components/use-datetime'
 
-type Props = {
+type ClockProps = {
   wordMode: boolean,
 };
 
-export default function Clock({ wordMode } : Props ) {
+export default function Clock({ wordMode }: ClockProps ) {
   const getRows = (activeLetters: NumberMatrix): JSX.Element[] => {
     const rows = []
     for (let i = 0; i < ROWS; i++) {

@@ -13,20 +13,3 @@
   align-items: center;
   justify-content: center;
 }
-
-.buttonMode {
-  height: 70px;
-  min-height: 70px;
-  min-width: 10px;
-  background-color: #0a0a0a;
-  color: white;
-  display: flex;
-  align-items: center;
-  border: solid 1px #0a0a0a;
-}
-
-.buttonMode:hover {
-  cursor: pointer;
-  background-color: black;
-  border: solid 1px black;
-}
