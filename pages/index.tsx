@@ -7,7 +7,7 @@ import LanguageSelector from "@/components/LanguageSelector";
 
 export default function Index() {
   const [wordMode, setWordMode] = React.useState(true);
-  const [language, setLanguage] = React.useState('EN');
+  const [language, setLanguage] = React.useState('FR');
 
   // -------------------------------------------------------------------------
   // We will dinamically import clock and avoid server-side rendering

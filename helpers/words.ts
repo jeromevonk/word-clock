@@ -12,15 +12,11 @@ import { PHRASE_ES, hourMap_ES, minuteMap_ES } from "@/helpers/words_ES";
 import { PHRASE_PT, hourMap_PT, minuteMap_PT } from "@/helpers/words_PT";
 
 function getPhrase(language: string): NumberMatrix {
-  console.log(language)
-  console.log(LANGUAGES.FRENCH)
-  console.log(typeof language)
   switch (language) {
     case LANGUAGES.ENGLISH:
       return PHRASE_EN;
 
     case LANGUAGES.FRENCH:
-      console.log('french')
       return PHRASE_FR;
 
     case LANGUAGES.SPANISH:
