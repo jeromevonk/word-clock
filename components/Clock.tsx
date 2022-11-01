@@ -1,16 +1,17 @@
 import React from "react";
 import { format } from "date-fns"
 import styles from '@/components/clock.module.css'
-import { letterLayout, ROWS } from '@/helpers/letterLayout'
+import { getLayout, ROWS } from '@/helpers/letterLayout'
 import { convertTimeToWords, convertTimeToDigits } from '@/helpers/util'
 import { NumberMatrix } from "@/types/types"
 import useDateTime from '@/components/use-datetime'
 
 type ClockProps = {
   wordMode: boolean,
+  language: string,
 };
 
-export default function Clock({ wordMode }: ClockProps ) {
+export default function Clock({ wordMode, language }: ClockProps ) {
   const getRows = (activeLetters: NumberMatrix): JSX.Element[] => {
     const rows = []
     for (let i = 0; i < ROWS; i++) {
@@ -21,6 +22,7 @@ export default function Clock({ wordMode }: ClockProps ) {
   }
 
   const getRow = (rowNumber: number, activeLetters: NumberMatrix): JSX.Element => {
+    const letterLayout = getLayout(language);
     return (
       <tr key={`row-${rowNumber}`}>
         {
@@ -44,19 +46,16 @@ export default function Clock({ wordMode }: ClockProps ) {
   // ------------------------------------
   const date = useDateTime("minute");
   const time = format(date, 'hh:mm aa');
-  console.log(time);
 
   let activeLetters;
 
   if (wordMode) {
-    activeLetters = convertTimeToWords(time);
+    activeLetters = convertTimeToWords(time, language);
   } else {
     activeLetters = convertTimeToDigits(time);
   }
   
   const rows = getRows(activeLetters);
-
-  console.log('render')
 
   return (
     <div className={styles.clock}>

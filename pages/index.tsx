@@ -3,9 +3,11 @@ import Head from 'next/head'
 import dynamic from 'next/dynamic'
 import styles from '@/pages/index.module.css'
 import ButtonMode from "@/components/ButtonMode";
+import LanguageSelector from "@/components/LanguageSelector";
 
 export default function Index() {
-  const [wordMode, setWordMode] = React.useState(true)
+  const [wordMode, setWordMode] = React.useState(true);
+  const [language, setLanguage] = React.useState('EN');
 
   // -------------------------------------------------------------------------
   // We will dinamically import clock and avoid server-side rendering
@@ -33,10 +35,13 @@ export default function Index() {
         <meta name="theme-color" content="#ffffff" />
       </Head>
 
+      <header>
+        <LanguageSelector setLanguage={setLanguage} />
+      </header>
       <main>
         <div className={styles.stackRow}>
-          <Clock wordMode={wordMode}/>
-          <ButtonMode setWordMode={setWordMode}/>
+          <Clock wordMode={wordMode} language={language} />
+          <ButtonMode setWordMode={setWordMode} />
         </div>
       </main>
 

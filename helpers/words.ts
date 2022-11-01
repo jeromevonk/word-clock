@@ -1,56 +1,73 @@
 
 export {
-  hourMap,
-  minuteMap,
-  IT_IS,
+  getPhrase,
+  getHours,
+  getMinutes,
 };
 
-import { NumberMatrix } from "types/types";
+import { LANGUAGES, NumberMatrix } from "types/types";
+import { PHRASE_EN, hourMap_EN, minuteMap_EN } from "@/helpers/words_EN";
+import { PHRASE_FR, hourMap_FR, minuteMap_FR } from "@/helpers/words_FR";
+import { PHRASE_ES, hourMap_ES, minuteMap_ES } from "@/helpers/words_ES";
+import { PHRASE_PT, hourMap_PT, minuteMap_PT } from "@/helpers/words_PT";
 
-// ---------------------------------------------
-// Hours
-// ---------------------------------------------
-const hourMap = {
-  1: [[5, 0], [5, 1], [5, 2]],
-  2: [[6, 8], [6, 9], [6, 10]],
-  3: [[5, 6], [5, 7], [5, 7], [5, 8], [5, 9], [5, 10]],
-  4: [[6, 0], [6, 1], [6, 2], [6, 3]],
-  5: [[6, 4], [6, 5], [6, 6], [6, 7]],
-  6: [[5, 3], [5, 4], [5, 5]],
-  7: [[8, 0], [8, 1], [8, 2], [8, 3], [8, 4]],
-  8: [[7, 0], [7, 1], [7, 2], [7, 3], [7, 4]],
-  9: [[4, 7], [4, 8], [4, 9], [4, 10]],
-  10: [[9, 0], [9, 1], [9, 2]],
-  11: [[7, 5], [7, 6], [7, 7], [7, 8], [7, 9], [7, 10]],
-  12: [[8, 5], [8, 6], [8, 7], [8, 8], [8, 9], [8, 10]],
+function getPhrase(language: string): NumberMatrix {
+  console.log(language)
+  console.log(LANGUAGES.FRENCH)
+  console.log(typeof language)
+  switch (language) {
+    case LANGUAGES.ENGLISH:
+      return PHRASE_EN;
+
+    case LANGUAGES.FRENCH:
+      console.log('french')
+      return PHRASE_FR;
+
+    case LANGUAGES.SPANISH:
+      return PHRASE_ES;
+
+    case LANGUAGES.PORTUGUESE:
+      return PHRASE_PT;
+
+    default:
+      return PHRASE_EN;
+  }
 }
 
-// ---------------------------------------------
-// Minutes
-// ---------------------------------------------
-const PAST: NumberMatrix = [[4, 0], [4, 1], [4, 2], [4, 3]];
-const TO: NumberMatrix = [[3, 9], [3, 10]];
-const OCLOCK: NumberMatrix = [[9, 5], [9, 6], [9, 7], [9, 8], [9, 9], [9, 10]]
-const FIVE: NumberMatrix = [[2, 6], [2, 7], [2, 8], [2, 9]];
-const TEN: NumberMatrix = [[3, 5], [3, 6], [3, 7]];
-const QUARTER: NumberMatrix = [[1, 0], [1, 2], [1, 3], [1, 4], [1, 5], [1, 6], [1, 7], [1, 8]];
-const TWENTY: NumberMatrix = [[2, 0], [2, 1], [2, 2], [2, 3], [2, 4], [2, 5]];
-const TWENTYFIVE: NumberMatrix = [...TWENTY, ...FIVE];
-const HALF: NumberMatrix = [[3, 0], [3, 1], [3, 2], [3, 3]];
-const IT_IS: NumberMatrix = [[0, 0], [0, 1], [0, 3], [0, 4]];
+function getHours(language: string, hour: number): NumberMatrix {
+  switch (language) {
+    case LANGUAGES.ENGLISH:
+      return hourMap_EN[hour as keyof typeof hourMap_EN];
 
-const minuteMap = {
-  0: [...OCLOCK],
-  5: [...FIVE, ...PAST],
-  10: [...TEN, ...PAST],
-  15: [...QUARTER, ...PAST],
-  20: [...TWENTY, ...PAST],
-  25: [...TWENTYFIVE, ...PAST],
-  30: [...HALF, ...PAST],
-  35: [...TWENTYFIVE, ...TO],
-  40: [...TWENTY, ...TO],
-  45: [...QUARTER, ...TO],
-  50: [...TEN, ...TO],
-  55: [...FIVE, ...TO],
-  60: [...OCLOCK],
+    case LANGUAGES.FRENCH:
+      return hourMap_FR[hour as keyof typeof hourMap_FR];
+
+    case LANGUAGES.SPANISH:
+      return hourMap_ES[hour as keyof typeof hourMap_ES];
+
+    case LANGUAGES.PORTUGUESE:
+      return hourMap_PT[hour as keyof typeof hourMap_PT];
+
+    default:
+      return hourMap_EN[hour as keyof typeof hourMap_EN];
+  }
+}
+
+function getMinutes(language: string, minutes: number): NumberMatrix {
+  switch (language) {
+    case LANGUAGES.ENGLISH:
+      return minuteMap_EN[minutes as keyof typeof minuteMap_EN];
+
+    case LANGUAGES.FRENCH:
+      return minuteMap_FR[minutes as keyof typeof minuteMap_FR];
+
+    case LANGUAGES.SPANISH:
+      return minuteMap_ES[minutes as keyof typeof minuteMap_ES];
+
+    case LANGUAGES.PORTUGUESE:
+      return minuteMap_PT[minutes as keyof typeof minuteMap_PT];
+
+    default:
+      return minuteMap_EN[minutes as keyof typeof minuteMap_EN];
+  }
 }

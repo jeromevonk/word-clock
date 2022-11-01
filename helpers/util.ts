@@ -8,10 +8,10 @@ export {
 import { ListOfCoordinates, NumberMatrix } from "@/types/types"
 import { ROWS, COLUMNS, } from "@/helpers/letterLayout"
 import { emptyState, EMPTY_ROW } from "@/helpers/state"
-import { hourMap, minuteMap, IT_IS } from '@/helpers/words'
+import { getPhrase, getHours, getMinutes} from '@/helpers/words'
 import { digitMap } from '@/helpers/digits'
 
-function convertTimeToWords(time: string): NumberMatrix {
+function convertTimeToWords(time: string, language: string): NumberMatrix {
   // First, parse hour and minutes
   const { hourToWordClock, minutesToWorkClock } = parseTime(time);
 
@@ -19,9 +19,9 @@ function convertTimeToWords(time: string): NumberMatrix {
   let state = JSON.parse(JSON.stringify(emptyState));
 
   // Follow instructions to turn the letters on
-  state = turnOnLetters(state, IT_IS);
-  state = turnOnLetters(state, hourMap[hourToWordClock as keyof typeof hourMap]);
-  state = turnOnLetters(state, minuteMap[minutesToWorkClock as keyof typeof minuteMap]);
+  state = turnOnLetters(state, getPhrase(language));
+  state = turnOnLetters(state, getHours(language, hourToWordClock));
+  state = turnOnLetters(state, getMinutes(language, minutesToWorkClock));
 
   return state;
 }
