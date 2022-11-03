@@ -8,7 +8,7 @@ export {
 import { ListOfCoordinates, NumberMatrix } from "@/types/types"
 import { ROWS, COLUMNS, } from "@/helpers/letterLayout"
 import { emptyState, EMPTY_ROW } from "@/helpers/state"
-import { getPhrase, getHours, getMinutes} from '@/helpers/words'
+import { getHours, getMinutes} from '@/helpers/words'
 import { digitMap } from '@/helpers/digits'
 
 function convertTimeToWords(time: string, language: string): NumberMatrix {
@@ -19,7 +19,6 @@ function convertTimeToWords(time: string, language: string): NumberMatrix {
   let state = JSON.parse(JSON.stringify(emptyState));
 
   // Follow instructions to turn the letters on
-  state = turnOnLetters(state, getPhrase(language));
   state = turnOnLetters(state, getHours(language, hourToWordClock));
   state = turnOnLetters(state, getMinutes(language, minutesToWorkClock));
 
