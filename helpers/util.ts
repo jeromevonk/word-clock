@@ -108,6 +108,8 @@ const parseTime = (time: string): ParsedTime => {
     }
   }
 
+  // TODO: manipular o caso de dar 60, voltar para zero
+
   return {
     exactHour,
     exactMinutes,

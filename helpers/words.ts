@@ -4,7 +4,7 @@ export {
   getMinutes,
 };
 
-import { LANGUAGES, NumberMatrix } from "types/types";
+import { LANGUAGES, NumberMatrix } from "@/types/types";
 import { PHRASE_EN, hourMap_EN, minuteMap_EN } from "@/helpers/words_EN";
 import { PHRASE_FR, hourMap_FR, minuteMap_FR } from "@/helpers/words_FR";
 import { PHRASE_ES, hourMap_ES, minuteMap_ES } from "@/helpers/words_ES";

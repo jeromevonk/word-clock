@@ -1,4 +1,8 @@
-import { convertTimeToWords, convertTimeToDigits, isEquivalent } from '@/helpers/util'
+import { 
+  convertTimeToWords, 
+  convertTimeToDigits, 
+  isEquivalent 
+} from '@/helpers/util'
 
 const expected_4_14_words = [
   [1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0],
@@ -80,17 +84,17 @@ const expected_12_45_digits = [
 
 describe('Util', () => {
   it('converts time to words - 4:14', () => {
-    const state = convertTimeToWords("4:14 pm");
+    const state = convertTimeToWords("4:14 pm", 'EN');
     expect(isEquivalent(state, expected_4_14_words)).toBe(true);
   });
 
   it('converts time to words - 11:59', () => {
-    const state = convertTimeToWords("11:59 pm");
+    const state = convertTimeToWords("11:59 pm", 'EN');
     expect(isEquivalent(state, expected_11_59_words)).toBe(true);
   });
 
   it('converts time to words - 12:45', () => {
-    const state = convertTimeToWords("12:45 pm");
+    const state = convertTimeToWords("12:45 pm", 'EN');
     expect(isEquivalent(state, expected_12_45_words)).toBe(true);
   });
 
