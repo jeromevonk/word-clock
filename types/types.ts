@@ -9,7 +9,3 @@ export enum LANGUAGES {
   SPANISH = 'ES',
   PORTUGUESE = 'PT'
 };
-
-// export interface LanguageProp {
-//   language: LANGUAGES
-// }

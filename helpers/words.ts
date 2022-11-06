@@ -4,58 +4,86 @@ export {
   getMinutes,
 };
 
-import { LANGUAGES, NumberMatrix } from "@/types/types";
+import { LANGUAGES, ListOfCoordinates } from "@/types/types";
 import { PHRASE_EN, hourMap_EN, minuteMap_EN } from "@/helpers/words_EN";
 import { PHRASE_FR, hourMap_FR, minuteMap_FR } from "@/helpers/words_FR";
 import { PHRASE_ES, hourMap_ES, minuteMap_ES } from "@/helpers/words_ES";
 import { PHRASE_PT, hourMap_PT, minuteMap_PT } from "@/helpers/words_PT";
 
-function getHours(language: string, hour: number): NumberMatrix {
+function getHours(language: string, hour: number, isAM: boolean): ListOfCoordinates {
+  let index: number|string = hour;
+  let phrase;
+  let hourLeters;
+
   switch (language) {
     case LANGUAGES.ENGLISH:
-      return [
-        ...PHRASE_EN, 
-        ...hourMap_EN[hour as keyof typeof hourMap_EN]
-      ];
+      phrase = PHRASE_EN;
+      hourLeters = hourMap_EN[index as keyof typeof hourMap_EN]
+      break;
 
     case LANGUAGES.FRENCH:
-      return [
-        ...PHRASE_FR,
-        ...hourMap_FR[hour as keyof typeof hourMap_FR]
-      ];
+      if (hour == 12) {
+        index = isAM ? 'MINUIT' : 'MIDI'; 
+      }
+
+      phrase = PHRASE_FR;
+      hourLeters = hourMap_FR[index as keyof typeof hourMap_FR];
+      break;
 
     case LANGUAGES.SPANISH:
-      return [
-        ...PHRASE_ES,
-        ...hourMap_ES[hour as keyof typeof hourMap_ES]
-      ];
+      phrase = PHRASE_ES;
+      hourLeters = hourMap_ES[index as keyof typeof hourMap_ES]
+      break;
 
     case LANGUAGES.PORTUGUESE:
-      return [
-        ...PHRASE_PT,
-        ...hourMap_PT[hour as keyof typeof hourMap_PT]
-      ];
+      phrase = PHRASE_PT;
+      hourLeters = hourMap_PT[index as keyof typeof hourMap_PT]
+      break;
   }
 
-  // Should never reach here
-  return [[]];
+  if (phrase === undefined) {
+    console.log(`Error getting phrase for language ${language}`)
+    phrase = [[]];
+  }
+
+  if (hourLeters === undefined) {
+    console.log(`Error getting hours for language ${language}, hour: ${hour}, isAM ${isAM}`)
+    hourLeters = [[]];
+  }
+
+  return [...phrase, ...hourLeters];
 }
 
-function getMinutes(language: string, minutes: number): NumberMatrix {
+function getMinutes(language: string, hour: number, minutes: number): ListOfCoordinates {
+  let index: number | string = minutes;
+  let ret;
+  
   switch (language) {
     case LANGUAGES.ENGLISH:
-      return minuteMap_EN[minutes as keyof typeof minuteMap_EN];
+      ret =  minuteMap_EN[index as keyof typeof minuteMap_EN];
+      break;
 
     case LANGUAGES.FRENCH:
-      return minuteMap_FR[minutes as keyof typeof minuteMap_FR];
+      if (minutes == 30) {
+        index = hour == 12? 'DEMI' : 'DEMIE';
+      }
+      ret = minuteMap_FR[index as keyof typeof minuteMap_FR];
+      break;
 
     case LANGUAGES.SPANISH:
-      return minuteMap_ES[minutes as keyof typeof minuteMap_ES];
+      ret =  minuteMap_ES[index as keyof typeof minuteMap_ES];
+      break;
 
     case LANGUAGES.PORTUGUESE:
-      return minuteMap_PT[minutes as keyof typeof minuteMap_PT];
-
-    default:
-      return minuteMap_EN[minutes as keyof typeof minuteMap_EN];
+      ret = minuteMap_PT[index as keyof typeof minuteMap_PT];
+      break;
   }
+
+  if (ret === undefined) {
+    console.log(`Error getting minutes for language ${language}, hour: ${hour}, minutes ${minutes}`)
+    // Return an empty ListOfCoordinates
+    ret = [[]];
+  }
+
+  return ret;
 }

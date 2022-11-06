@@ -8,19 +8,19 @@ export {
 import { ListOfCoordinates, NumberMatrix } from "@/types/types"
 import { ROWS, COLUMNS, } from "@/helpers/letterLayout"
 import { emptyState, EMPTY_ROW } from "@/helpers/state"
-import { getHours, getMinutes} from '@/helpers/words'
+import { getHours, getMinutes } from '@/helpers/words'
 import { digitMap } from '@/helpers/digits'
 
 function convertTimeToWords(time: string, language: string): NumberMatrix {
   // First, parse hour and minutes
-  const { hourToWordClock, minutesToWorkClock } = parseTime(time);
+  const { isAM, hourToWordClock, minutesToWorkClock } = parseTime(time);
 
   // Deep copy the initial state
   let state = JSON.parse(JSON.stringify(emptyState));
 
   // Follow instructions to turn the letters on
-  state = turnOnLetters(state, getHours(language, hourToWordClock));
-  state = turnOnLetters(state, getMinutes(language, minutesToWorkClock));
+  state = turnOnLetters(state, getHours(language, hourToWordClock, isAM));
+  state = turnOnLetters(state, getMinutes(language, hourToWordClock, minutesToWorkClock));
 
   return state;
 }
@@ -46,6 +46,7 @@ function isEquivalent(oldState: NumberMatrix, newState: NumberMatrix): boolean {
 }
 
 type ParsedTime = {
+  isAM: boolean,
   exactHour: number,
   exactMinutes: number,
   hourToWordClock: number,
@@ -54,6 +55,7 @@ type ParsedTime = {
 
 const parseTime = (time: string): ParsedTime => {
   // 'time' has the format: HH:mm am (or pm)
+  let isAM: boolean = time.search('AM') != -1;
   const parsed: string[] = time.slice(0, -3).split(':');
 
   // Exact hour
@@ -100,17 +102,42 @@ const parseTime = (time: string): ParsedTime => {
   if (minutesToWorkClock <= 30) {
     hourToWordClock = exactHour;
   } else {
+    // Should add an hour?
     if (exactHour < 12) {
       hourToWordClock = exactHour + 1;
     } else {
       // Can't add an hour because after 12h, we go back to 1h
       hourToWordClock = 1;
     }
+
+    // If we reached 60 minutes, change it to 0
+    if (minutesToWorkClock == 60) minutesToWorkClock = 0;
   }
 
-  // TODO: manipular o caso de dar 60, voltar para zero
+  // ----------------------------------------------------------
+  // Special treatment for noon/midnight
+  // We might have to adjust 'isAM'
+  // noon is 12 PM
+  // midnight is 12 AM
+  // ----------------------------------------------------------
+  // Example:
+  // Exact time is '11:59 PM'
+  // exactHour is 11
+  // exactMinutes is 59,
+  // hourToWordClock is 12,
+  // minutesToWorkClock is 0
+  // BUT
+  // 'isAM' is false, so the clock would read it as noon
+  // Therefore, for 11:58 PM and 11:59 PM, we must invert isAM
+  // ----------------------------------------------------------
+  if (hourToWordClock == 12) {
+    if (exactMinutes == 58 || exactMinutes == 59) {
+      isAM = !isAM;
+    }
+  }
 
   return {
+    isAM,
     exactHour,
     exactMinutes,
     hourToWordClock,
@@ -162,7 +189,9 @@ const getDigits = (exactMinutes: number): NumberMatrix => {
 function turnOnLetters(currentState: NumberMatrix, actions: ListOfCoordinates) {
   let newState = currentState;
   for (const action of actions) {
-    newState[action[0]][action[1]] = 1;
+    if (action[0] !== undefined && action[1] !== undefined) {
+      newState[action[0]][action[1]] = 1;
+    }
   }
 
   return newState;

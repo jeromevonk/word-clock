@@ -30,23 +30,24 @@ const hourMap_FR = {
   9: [[2, 0], [2, 1], [2, 2], [2, 3], ...HEURES],
   10: [[4, 2], [4, 3], [4, 4], ...HEURES],
   11: [[5, 0], [5, 1], [5, 2], [5, 3], ...HEURES],
-  12: [[4, 0], [4, 1], [4, 2], [4, 3]],
-  // MIDI: [[4, 0], [4, 1], [4, 2], [4, 3]],
-  // MINUIT: [[4, 5], [4, 6], [4, 7], [4, 8], [4, 9], [4, 10]],
+  MIDI: [[4, 0], [4, 1], [4, 2], [4, 3]],
+  MINUIT: [[4, 5], [4, 6], [4, 7], [4, 8], [4, 9], [4, 10]],
 }
 
 // ---------------------------------------------
 // Minutes
 // ---------------------------------------------
-const ET: NumberMatrix = [[7, 0], [7, 1]];
+const ET: NumberMatrix = [[7, 0], [7, 1]]; // used for QUART
 const MOINS: NumberMatrix = [[6, 0], [6, 1], [6, 2], [6, 3], [6, 4]];
+const LE: NumberMatrix = [[6, 6], [6, 7]];
 
 const CINQ: NumberMatrix = [[8, 6], [8, 7], [8, 8], [8, 9]];
 const DIX: NumberMatrix = [[6, 8], [6, 9], [6, 10]];
 const QUART: NumberMatrix = [[7, 3], [7, 4], [7, 5], [7, 6], [7, 7]];
 const VINGT: NumberMatrix = [[8, 0], [8, 1], [8, 2], [8, 3], [8, 4]];
 const VINGT_CINQ: NumberMatrix = [...VINGT, [8, 5], ...CINQ];
-const DEMIE: NumberMatrix = [[9, 0], [9, 1], [9, 3], [9, 4], [9, 5], [9, 6], [9, 7]];
+const DEMI: NumberMatrix = [[9, 0], [9, 1], [9, 3], [9, 4], [9, 5], [9, 6]]; // alread has 'ET'
+const DEMIE: NumberMatrix = [...DEMI, [9, 7]];
 
 const minuteMap_FR = {
   0: [],
@@ -55,11 +56,11 @@ const minuteMap_FR = {
   15: [...ET, ...QUART],
   20: [...VINGT],
   25: [...VINGT_CINQ],
-  30: [...ET, ...DEMIE],
+  DEMI: [...DEMI],
+  DEMIE: [...DEMIE],
   35: [...MOINS, ...VINGT_CINQ],
   40: [...MOINS, ...VINGT],
-  45: [...MOINS, ...QUART],
+  45: [...MOINS, ...LE, ...QUART],
   50: [...MOINS, ...DIX],
   55: [...MOINS, ...CINQ],
-  60: [],
 }

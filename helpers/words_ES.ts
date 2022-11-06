@@ -56,5 +56,4 @@ const minuteMap_ES = {
   45: [...QUARTER, ...TO],
   50: [...TEN, ...TO],
   55: [...FIVE, ...TO],
-  60: [...OCLOCK],
 }
