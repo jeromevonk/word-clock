@@ -189,8 +189,14 @@ const getDigits = (exactMinutes: number): NumberMatrix => {
 function turnOnLetters(currentState: NumberMatrix, actions: ListOfCoordinates) {
   let newState = currentState;
   for (const action of actions) {
-    if (action[0] !== undefined && action[1] !== undefined) {
+    if (
+      action[0] !== undefined &&
+      action[1] !== undefined &&
+      newState[action[0]] !== undefined
+    ) {
       newState[action[0]][action[1]] = 1;
+    } else {
+      console.log(`Error on turnOnLetters. action should be an array of length = 2, it is length = ${action.length}`);
     }
   }
 

@@ -1,20 +1,28 @@
 
 export {
-  PHRASE_EN,
+  getPhrase_EN,
+  getIndexForHourMap_EN,
   hourMap_EN,
   minuteMap_EN,
 };
 
-import { NumberMatrix } from "types/types";
+import { ListOfCoordinates } from "types/types";
 
 // --------------------------
 // Phrase
 // --------------------------
-const PHRASE_EN: NumberMatrix = [[0, 0], [0, 1], [0, 3], [0, 4]];
+const PHRASE_EN: ListOfCoordinates = [[0, 0], [0, 1], [0, 3], [0, 4]];
+const getPhrase_EN = (_hour: number): ListOfCoordinates => {
+  return PHRASE_EN;
+}
 
 // ---------------------------------------------
 // Hours
 // ---------------------------------------------
+const getIndexForHourMap_EN = (hour: number, _isAM: boolean): number | string => {
+  return hour;
+};
+
 const hourMap_EN = {
   1: [[5, 0], [5, 1], [5, 2]],
   2: [[6, 8], [6, 9], [6, 10]],
@@ -33,15 +41,15 @@ const hourMap_EN = {
 // ---------------------------------------------
 // Minutes
 // ---------------------------------------------
-const PAST: NumberMatrix = [[4, 0], [4, 1], [4, 2], [4, 3]];
-const TO: NumberMatrix = [[3, 9], [3, 10]];
-const OCLOCK: NumberMatrix = [[9, 5], [9, 6], [9, 7], [9, 8], [9, 9], [9, 10]]
-const FIVE: NumberMatrix = [[2, 6], [2, 7], [2, 8], [2, 9]];
-const TEN: NumberMatrix = [[3, 5], [3, 6], [3, 7]];
-const QUARTER: NumberMatrix = [[1, 0], [1, 2], [1, 3], [1, 4], [1, 5], [1, 6], [1, 7], [1, 8]];
-const TWENTY: NumberMatrix = [[2, 0], [2, 1], [2, 2], [2, 3], [2, 4], [2, 5]];
-const TWENTYFIVE: NumberMatrix = [...TWENTY, ...FIVE];
-const HALF: NumberMatrix = [[3, 0], [3, 1], [3, 2], [3, 3]];
+const PAST: ListOfCoordinates = [[4, 0], [4, 1], [4, 2], [4, 3]];
+const TO: ListOfCoordinates = [[3, 9], [3, 10]];
+const OCLOCK: ListOfCoordinates = [[9, 5], [9, 6], [9, 7], [9, 8], [9, 9], [9, 10]]
+const FIVE: ListOfCoordinates = [[2, 6], [2, 7], [2, 8], [2, 9]];
+const TEN: ListOfCoordinates = [[3, 5], [3, 6], [3, 7]];
+const QUARTER: ListOfCoordinates = [[1, 0], [1, 2], [1, 3], [1, 4], [1, 5], [1, 6], [1, 7], [1, 8]];
+const TWENTY: ListOfCoordinates = [[2, 0], [2, 1], [2, 2], [2, 3], [2, 4], [2, 5]];
+const TWENTYFIVE: ListOfCoordinates = [...TWENTY, ...FIVE];
+const HALF: ListOfCoordinates = [[3, 0], [3, 1], [3, 2], [3, 3]];
 
 const minuteMap_EN = {
   0: [...OCLOCK],

@@ -5,38 +5,38 @@ export {
 };
 
 import { LANGUAGES, ListOfCoordinates } from "@/types/types";
-import { PHRASE_EN, hourMap_EN, minuteMap_EN } from "@/helpers/words_EN";
-import { PHRASE_FR, hourMap_FR, minuteMap_FR } from "@/helpers/words_FR";
-import { PHRASE_ES, hourMap_ES, minuteMap_ES } from "@/helpers/words_ES";
-import { PHRASE_PT, hourMap_PT, minuteMap_PT } from "@/helpers/words_PT";
+import { getPhrase_EN, getIndexForHourMap_EN, hourMap_EN, minuteMap_EN } from "@/helpers/words_EN";
+import { getPhrase_FR, getIndexForHourMap_FR, hourMap_FR, minuteMap_FR } from "@/helpers/words_FR";
+import { getPhrase_ES, getIndexForHourMap_ES, hourMap_ES, minuteMap_ES } from "@/helpers/words_ES";
+import { getPhrase_PT, getIndexForHourMap_PT, hourMap_PT, minuteMap_PT } from "@/helpers/words_PT";
 
 function getHours(language: string, hour: number, isAM: boolean): ListOfCoordinates {
-  let index: number|string = hour;
+  let index: number|string;
   let phrase;
   let hourLeters;
 
   switch (language) {
     case LANGUAGES.ENGLISH:
-      phrase = PHRASE_EN;
+      phrase = getPhrase_EN(hour);
+      index = getIndexForHourMap_EN(hour, isAM);
       hourLeters = hourMap_EN[index as keyof typeof hourMap_EN]
       break;
 
     case LANGUAGES.FRENCH:
-      if (hour == 12) {
-        index = isAM ? 'MINUIT' : 'MIDI'; 
-      }
-
-      phrase = PHRASE_FR;
+      phrase = getPhrase_FR(hour);
+      index = getIndexForHourMap_FR(hour, isAM);
       hourLeters = hourMap_FR[index as keyof typeof hourMap_FR];
       break;
 
     case LANGUAGES.SPANISH:
-      phrase = PHRASE_ES;
+      phrase = getPhrase_ES(hour);
+      index = getIndexForHourMap_ES(hour, isAM);
       hourLeters = hourMap_ES[index as keyof typeof hourMap_ES]
       break;
 
     case LANGUAGES.PORTUGUESE:
-      phrase = PHRASE_PT;
+      phrase = getPhrase_PT(hour);
+      index = getIndexForHourMap_PT(hour, isAM);
       hourLeters = hourMap_PT[index as keyof typeof hourMap_PT]
       break;
   }
@@ -56,7 +56,7 @@ function getHours(language: string, hour: number, isAM: boolean): ListOfCoordina
 
 function getMinutes(language: string, hour: number, minutes: number): ListOfCoordinates {
   let index: number | string = minutes;
-  let ret;
+  let ret: ListOfCoordinates = [[]];
   
   switch (language) {
     case LANGUAGES.ENGLISH:

@@ -1,22 +1,34 @@
 
 export {
-  PHRASE_FR,
+  getPhrase_FR,
+  getIndexForHourMap_FR,
   hourMap_FR,
   minuteMap_FR,
 };
 
-import { NumberMatrix } from "types/types";
+import { ListOfCoordinates } from "types/types";
 
 // --------------------------
 // Phrase
 // --------------------------
-const PHRASE_FR: NumberMatrix = [[0, 0], [0, 1], [0, 3], [0, 4], [0, 5]];
+const getPhrase_FR = (_hour: number): ListOfCoordinates => {
+  return PHRASE_FR;
+}
+const PHRASE_FR: ListOfCoordinates = [[0, 0], [0, 1], [0, 3], [0, 4], [0, 5]];
 
 // ---------------------------------------------
 // Hours
 // ---------------------------------------------
-const HEURE: NumberMatrix = [[5, 5], [5, 6], [5, 7], [5, 8], [5, 9]];
-const HEURES: NumberMatrix = [...HEURE, [5, 10]];
+const getIndexForHourMap_FR = (hour: number, isAM: boolean): number | string => {
+  let index: number | string = hour;
+  if (hour == 12) {
+    index = isAM ? 'MINUIT' : 'MIDI';
+  }
+
+  return index;
+}
+const HEURE: ListOfCoordinates = [[5, 5], [5, 6], [5, 7], [5, 8], [5, 9]];
+const HEURES: ListOfCoordinates = [...HEURE, [5, 10]];
 
 const hourMap_FR = {
   1: [[2, 4], [2, 5], [2, 6], ...HEURE],
@@ -37,17 +49,17 @@ const hourMap_FR = {
 // ---------------------------------------------
 // Minutes
 // ---------------------------------------------
-const ET: NumberMatrix = [[7, 0], [7, 1]]; // used for QUART
-const MOINS: NumberMatrix = [[6, 0], [6, 1], [6, 2], [6, 3], [6, 4]];
-const LE: NumberMatrix = [[6, 6], [6, 7]];
+const ET: ListOfCoordinates = [[7, 0], [7, 1]]; // used for QUART
+const MOINS: ListOfCoordinates = [[6, 0], [6, 1], [6, 2], [6, 3], [6, 4]];
+const LE: ListOfCoordinates = [[6, 6], [6, 7]];
 
-const CINQ: NumberMatrix = [[8, 6], [8, 7], [8, 8], [8, 9]];
-const DIX: NumberMatrix = [[6, 8], [6, 9], [6, 10]];
-const QUART: NumberMatrix = [[7, 3], [7, 4], [7, 5], [7, 6], [7, 7]];
-const VINGT: NumberMatrix = [[8, 0], [8, 1], [8, 2], [8, 3], [8, 4]];
-const VINGT_CINQ: NumberMatrix = [...VINGT, [8, 5], ...CINQ];
-const DEMI: NumberMatrix = [[9, 0], [9, 1], [9, 3], [9, 4], [9, 5], [9, 6]]; // alread has 'ET'
-const DEMIE: NumberMatrix = [...DEMI, [9, 7]];
+const CINQ: ListOfCoordinates = [[8, 6], [8, 7], [8, 8], [8, 9]];
+const DIX: ListOfCoordinates = [[6, 8], [6, 9], [6, 10]];
+const QUART: ListOfCoordinates = [[7, 3], [7, 4], [7, 5], [7, 6], [7, 7]];
+const VINGT: ListOfCoordinates = [[8, 0], [8, 1], [8, 2], [8, 3], [8, 4]];
+const VINGT_CINQ: ListOfCoordinates = [...VINGT, [8, 5], ...CINQ];
+const DEMI: ListOfCoordinates = [[9, 0], [9, 1], [9, 3], [9, 4], [9, 5], [9, 6]]; // alread has 'ET'
+const DEMIE: ListOfCoordinates = [...DEMI, [9, 7]];
 
 const minuteMap_FR = {
   0: [],
