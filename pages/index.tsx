@@ -40,7 +40,7 @@ export default function Index() {
       </Head>
 
       {
-        isMobile ?
+        true ?
           // ----------------------------------------------    
           // Show language selector and one clock
           // ----------------------------------------------    
@@ -64,10 +64,20 @@ export default function Index() {
             // ----------------------------------------------    
             // Show 4 clocks with different languages
             // do not show selector
+            // TODOOO
             // ----------------------------------------------    
-            <div className="grid-container">
+            <div className={styles.gridContainer}>
               <div className="box">
                 <Clock wordMode={wordMode} language={'EN'} />
+              </div>
+              <div className="box">
+                <Clock wordMode={wordMode} language={'FR'} />
+              </div>
+              <div className="box">
+                <Clock wordMode={wordMode} language={'ES'} />
+              </div>
+              <div className="box">
+                <Clock wordMode={wordMode} language={'PT'} />
               </div>
             </div>
           )
