@@ -50,7 +50,7 @@ export default function Clock({ wordMode, language }: ClockProps ) {
   let activeLetters;
 
   if (wordMode) {
-    activeLetters = convertTimeToWords("02:08 PM", language);
+    activeLetters = convertTimeToWords(time, language);
   } else {
     activeLetters = convertTimeToDigits(time);
   }

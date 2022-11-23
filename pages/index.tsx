@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic'
 import styles from '@/pages/index.module.css'
 import ButtonMode from "@/components/ButtonMode";
 import LanguageSelector from "@/components/LanguageSelector";
+import useCheckMobileScreen from '@/components/use-check-mobile-screen'
 
 export default function Index() {
   const [wordMode, setWordMode] = React.useState(true);
@@ -21,6 +22,9 @@ export default function Index() {
     { ssr: false }
   );
 
+  const isMobile = useCheckMobileScreen("minute");
+  console.log(isMobile);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -35,15 +39,17 @@ export default function Index() {
         <meta name="theme-color" content="#ffffff" />
       </Head>
 
-      <header>
-        <LanguageSelector setLanguage={setLanguage} />
-      </header>
-      <main>
-        <div className={styles.stackRow}>
-          <Clock wordMode={wordMode} language={language} />
-          <ButtonMode setWordMode={setWordMode} />
-        </div>
-      </main>
+      <div>
+        <header>
+          <LanguageSelector setLanguage={setLanguage} />
+        </header>
+        <main>
+          <div className={styles.stackRow}>
+            <Clock wordMode={wordMode} language={language} />
+            <ButtonMode setWordMode={setWordMode} />
+          </div>
+        </main>
+      </div>
 
       <footer className={styles.footer}>
         <a href="https://jeromevonk.github.io/" target="blank">By Jerome Vonk</a>
