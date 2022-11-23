@@ -22,9 +22,6 @@ export default function Index() {
     { ssr: false }
   );
 
-  const isMobile = useCheckMobileScreen();
-  console.log(isMobile);
-
   return (
     <div className={styles.container}>
       <Head>
@@ -39,49 +36,16 @@ export default function Index() {
         <meta name="theme-color" content="#ffffff" />
       </Head>
 
-      {
-        true ?
-          // ----------------------------------------------    
-          // Show language selector and one clock
-          // ----------------------------------------------    
-          (
-            <div>
-              <header>
-                <LanguageSelector setLanguage={setLanguage} />
-              </header>
-              <main>
-                <div className={styles.stackRow}>
-                  <Clock wordMode={wordMode} language={language} />
-                  <ButtonMode setWordMode={setWordMode} />
-                </div>
-              </main>
-            </div>
-          )
-
-          :
-
-          (
-            // ----------------------------------------------    
-            // Show 4 clocks with different languages
-            // do not show selector
-            // TODOOO
-            // ----------------------------------------------    
-            <div className={styles.gridContainer}>
-              <div className="box">
-                <Clock wordMode={wordMode} language={'EN'} />
-              </div>
-              <div className="box">
-                <Clock wordMode={wordMode} language={'FR'} />
-              </div>
-              <div className="box">
-                <Clock wordMode={wordMode} language={'ES'} />
-              </div>
-              <div className="box">
-                <Clock wordMode={wordMode} language={'PT'} />
-              </div>
-            </div>
-          )
-      }
+      <header>
+        <LanguageSelector setLanguage={setLanguage} />
+      </header>
+      
+      <main>
+        <div className={styles.stackRow}>
+          <Clock wordMode={wordMode} language={language} />
+          <ButtonMode setWordMode={setWordMode} />
+        </div>
+      </main>
 
       <footer className={styles.footer}>
         <a href="https://jeromevonk.github.io/" target="blank">By Jerome Vonk</a>
