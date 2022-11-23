@@ -22,7 +22,7 @@ export default function Index() {
     { ssr: false }
   );
 
-  const isMobile = useCheckMobileScreen("minute");
+  const isMobile = useCheckMobileScreen();
   console.log(isMobile);
 
   return (
@@ -39,17 +39,39 @@ export default function Index() {
         <meta name="theme-color" content="#ffffff" />
       </Head>
 
-      <div>
-        <header>
-          <LanguageSelector setLanguage={setLanguage} />
-        </header>
-        <main>
-          <div className={styles.stackRow}>
-            <Clock wordMode={wordMode} language={language} />
-            <ButtonMode setWordMode={setWordMode} />
-          </div>
-        </main>
-      </div>
+      {
+        isMobile ?
+          // ----------------------------------------------    
+          // Show language selector and one clock
+          // ----------------------------------------------    
+          (
+            <div>
+              <header>
+                <LanguageSelector setLanguage={setLanguage} />
+              </header>
+              <main>
+                <div className={styles.stackRow}>
+                  <Clock wordMode={wordMode} language={language} />
+                  <ButtonMode setWordMode={setWordMode} />
+                </div>
+              </main>
+            </div>
+          )
+
+          :
+
+          (
+            // ----------------------------------------------    
+            // Show 4 clocks with different languages
+            // do not show selector
+            // ----------------------------------------------    
+            <div className="grid-container">
+              <div className="box">
+                <Clock wordMode={wordMode} language={'EN'} />
+              </div>
+            </div>
+          )
+      }
 
       <footer className={styles.footer}>
         <a href="https://jeromevonk.github.io/" target="blank">By Jerome Vonk</a>
