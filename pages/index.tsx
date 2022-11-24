@@ -4,7 +4,6 @@ import dynamic from 'next/dynamic'
 import styles from '@/pages/index.module.css'
 import ButtonMode from "@/components/ButtonMode";
 import LanguageSelector from "@/components/LanguageSelector";
-import useCheckMobileScreen from '@/components/use-check-mobile-screen'
 
 export default function Index() {
   const [wordMode, setWordMode] = React.useState(true);
@@ -39,7 +38,7 @@ export default function Index() {
       <header>
         <LanguageSelector setLanguage={setLanguage} />
       </header>
-      
+
       <main>
         <div className={styles.stackRow}>
           <Clock wordMode={wordMode} language={language} />
