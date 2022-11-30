@@ -12,39 +12,13 @@ export default function LanguageSelector({ setLanguage }: LanguageSelectorProps)
   };
 
   return (
-    <div onChange={handleChange} className={styles.selector}>
-      <input
-        type="radio"
-        value={LANGUAGES.ENGLISH}
-        id="English"
-        name="language"
-        defaultChecked
-      /> 
-      <label htmlFor="English">English</label>
-
-      <input
-        type="radio"
-        value={LANGUAGES.FRENCH}
-        name="language"
-        id="French"
-      /> 
-      <label htmlFor="French">Français</label>
-
-      <input
-        type="radio"
-        value={LANGUAGES.SPANISH}
-        name="language"
-        id="Spanish"
-      /> 
-      <label htmlFor="Spanish">Español</label>
-
-      <input
-        type="radio"
-        value={LANGUAGES.PORTUGUESE}
-        name="language"
-        id="Portuguese"
-      /> 
-      <label htmlFor="Portuguese">Português</label>
+    <div className={styles.selector}>
+      <select onChange={(event) => { setLanguage(event.target.value) }}>
+        <option value={LANGUAGES.ENGLISH}>English</option>
+        <option value={LANGUAGES.FRENCH}>French</option>
+        <option value={LANGUAGES.SPANISH}>Español</option>
+        <option value={LANGUAGES.PORTUGUESE}>Português</option>
+      </select>
     </div>
   )
 }

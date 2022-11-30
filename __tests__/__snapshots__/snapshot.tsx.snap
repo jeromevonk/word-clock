@@ -9,51 +9,28 @@ exports[`renders homepage unchanged 1`] = `
       <div
         class="selector"
       >
-        <input
-          checked=""
-          id="English"
-          name="language"
-          type="radio"
-          value="EN"
-        />
-        <label
-          for="English"
-        >
-          English
-        </label>
-        <input
-          id="French"
-          name="language"
-          type="radio"
-          value="FR"
-        />
-        <label
-          for="French"
-        >
-          Français
-        </label>
-        <input
-          id="Spanish"
-          name="language"
-          type="radio"
-          value="ES"
-        />
-        <label
-          for="Spanish"
-        >
-          Español
-        </label>
-        <input
-          id="Portuguese"
-          name="language"
-          type="radio"
-          value="PT"
-        />
-        <label
-          for="Portuguese"
-        >
-          Português
-        </label>
+        <select>
+          <option
+            value="EN"
+          >
+            English
+          </option>
+          <option
+            value="FR"
+          >
+            French
+          </option>
+          <option
+            value="ES"
+          >
+            Español
+          </option>
+          <option
+            value="PT"
+          >
+            Português
+          </option>
+        </select>
       </div>
     </header>
     <main>
