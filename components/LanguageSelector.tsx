@@ -6,11 +6,6 @@ type LanguageSelectorProps = {
   setLanguage: Function,
 };
 export default function LanguageSelector({ setLanguage }: LanguageSelectorProps) {
-  const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
-    const target = event.target as HTMLTextAreaElement;
-    setLanguage(target.value);
-  };
-
   return (
     <div className={styles.selector}>
       <select onChange={(event) => { setLanguage(event.target.value) }}>
