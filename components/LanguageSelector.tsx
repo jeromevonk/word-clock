@@ -5,7 +5,7 @@ import { LANGUAGES } from "@/types/types"
 type LanguageSelectorProps = {
   setLanguage: Function,
 };
-export default function LanguageSelector({ setLanguage }: LanguageSelectorProps) {
+export default function LanguageSelector({ setLanguage }: Readonly<LanguageSelectorProps>) {
   return (
     <div className={styles.selector}>
       <select onChange={(event) => { setLanguage(event.target.value) }}>
