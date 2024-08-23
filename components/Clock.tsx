@@ -4,7 +4,7 @@ import styles from '@/components/clock.module.css'
 import { getLayout, ROWS } from '@/helpers/letterLayout'
 import { convertTimeToWords, convertTimeToDigits } from '@/helpers/util'
 import { NumberMatrix } from "@/types/types"
-import { v4 as uuidv4 } from 'uuid';
+import crypto from 'crypto';
 import useDateTime from '@/components/use-datetime'
 
 type ClockProps = {
@@ -22,6 +22,10 @@ export default function Clock({ wordMode, language }: Readonly<ClockProps> ) {
     return rows;
   }
 
+  const generateRandomUUID = (): string => {
+    return crypto.randomBytes(16).toString('hex');
+  }
+
   const getRow = (rowNumber: number, activeLetters: NumberMatrix): JSX.Element => {
     const letterLayout = getLayout(language);
     return (
@@ -33,7 +37,7 @@ export default function Clock({ wordMode, language }: Readonly<ClockProps> ) {
               className += ` ${styles.activeCell}`;
             }
             return (
-              <td key={uuidv4()} className={className}>{letter}</td>
+              <td key={generateRandomUUID()} className={className}>{letter}</td>
             )
           })
         }
