@@ -5,7 +5,7 @@ type ButtonModeProps = {
   setWordMode: Function,
 };
 
-export default function ButtonMode({ setWordMode }: ButtonModeProps) {
+export default function ButtonMode({ setWordMode }: Readonly<ButtonModeProps>) {
   return (
     <button
       className={styles.buttonMode}
