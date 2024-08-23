@@ -4,6 +4,7 @@ import styles from '@/components/clock.module.css'
 import { getLayout, ROWS } from '@/helpers/letterLayout'
 import { convertTimeToWords, convertTimeToDigits } from '@/helpers/util'
 import { NumberMatrix } from "@/types/types"
+import { v4 as uuidv4 } from 'uuid';
 import useDateTime from '@/components/use-datetime'
 
 type ClockProps = {
@@ -11,7 +12,7 @@ type ClockProps = {
   language: string,
 };
 
-export default function Clock({ wordMode, language }: ClockProps ) {
+export default function Clock({ wordMode, language }: Readonly<ClockProps> ) {
   const getRows = (activeLetters: NumberMatrix): JSX.Element[] => {
     const rows = []
     for (let i = 0; i < ROWS; i++) {
@@ -32,7 +33,7 @@ export default function Clock({ wordMode, language }: ClockProps ) {
               className += ` ${styles.activeCell}`;
             }
             return (
-              <td key={`cell-${rowNumber}-${columnNumber}`} className={className}>{letter}</td>
+              <td key={uuidv4()} className={className}>{letter}</td>
             )
           })
         }
