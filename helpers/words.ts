@@ -79,7 +79,7 @@ function getMinutes(language: string, hour: number, minutes: number): ListOfCoor
       break;
   }
 
-  if (ret === undefined) {
+  if (ret.length == 0 || ret[0]?.length == 0) {
     console.log(`Error getting minutes for language ${language}, hour: ${hour}, minutes ${minutes}`)
     // Return an empty ListOfCoordinates
     ret = [[]];

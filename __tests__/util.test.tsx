@@ -58,7 +58,7 @@ const expected_6_20_words_PT = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 ];
 
-const expected_6_20_words_FR = [
+const expected_6_30_words_FR = [
   [1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -67,8 +67,8 @@ const expected_6_20_words_FR = [
   [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0],
 ];
 
 const expected_6_25_words_ES = [
@@ -123,6 +123,19 @@ const expected_12_45_digits = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 ];
 
+const empty = [
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+];
+
 describe('Util', () => {
   it('converts time to words (EN) - 4:14', () => {
     let state: NumberMatrix = [];
@@ -156,12 +169,12 @@ describe('Util', () => {
     expect(isEquivalent(state, expected_6_20_words_PT)).toBe(true);
   });
 
-  it('converts time to words (FR) - 6:20', () => {
+  it('converts time to words (FR) - 6:30', () => {
     let state: NumberMatrix = [];
     act(() => {
-      state = convertTimeToWords("6:20 pm", 'FR');
+      state = convertTimeToWords("6:30 pm", 'FR');
     });
-    expect(isEquivalent(state, expected_6_20_words_FR)).toBe(true);
+    expect(isEquivalent(state, expected_6_30_words_FR)).toBe(true);
   });
 
   it('converts time to words (ES) - 6:25', () => {
@@ -199,4 +212,13 @@ describe('Util', () => {
   it('isEquivalent false', () => {
     expect(isEquivalent(expected_11_59_digits, expected_12_45_digits)).toBe(false);
   });
+
+  it('wrong language', () => {
+    let state: NumberMatrix = [];
+    act(() => {
+      state = convertTimeToWords("4:14 pm", 'JP');
+    });
+    expect(isEquivalent(state, empty)).toBe(true);
+  });
+
 });
