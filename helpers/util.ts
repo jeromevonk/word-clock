@@ -16,7 +16,7 @@ function convertTimeToWords(time: string, language: string): NumberMatrix {
   const { isAM, hourToWordClock, minutesToWorkClock } = parseTime(time);
 
   // Deep copy the initial state
-  let state = JSON.parse(JSON.stringify(emptyState));
+  let state = structuredClone(emptyState);
 
   // Follow instructions to turn the letters on
   state = turnOnLetters(state, getHours(language, hourToWordClock, isAM));

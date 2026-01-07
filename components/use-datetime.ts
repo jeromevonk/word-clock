@@ -46,10 +46,10 @@ function msUntilNext(threshold: string) {
 }
 
 function startOfThreshold(threshold: string) {
-  if (!threshold) {
-    return new Date();
-  } else {
+  if (threshold) {
     return thresholdMap[threshold as keyof typeof thresholdMap].start(new Date());
+  } else {
+    return new Date();
   }
 }
 
